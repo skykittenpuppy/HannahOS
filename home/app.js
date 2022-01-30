@@ -5,7 +5,7 @@ const body = document.body;
 
 const theme = localStorage.getItem("theme");
 const pastel = localStorage.getItem("pastelEnabled");
-
+console.log(theme, pastel);
 if (theme){
     body.classList.add(theme);
     if (pastel) { body.classList.add("pastel"); }

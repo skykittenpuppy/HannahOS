@@ -1,49 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--Note: most of this html file-->
+<html lang="en-US">
+
 <head>
     <meta charset="UTF-8">
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Testing!</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="app.js"></script>
+    <meta http-equiv="refresh" content="0; url=../home">
+    <script type="text/javascript">
+        window.location.href = window.location.href.replace("index.html", "") + "home"
+    </script>
+    <title>Page Redirection</title>
 </head>
 
-<body class="light">
-    <nav class="navbar">
-        <ul class="navbar-nav">
-                
-            <li class ="nav-item">Home</li>
-            <li class ="nav-item">About</li>
-            <li class ="nav-item has-dropdown">
-                <a href ="#">Theme</a>
-                <ul class="dropdown">
-                    <li class="dropdown-item theme-light">
-                        <a id="light" href = "#">light</a>
-                    </li>
-                    <li class="dropdown-item theme-dark">
-                        <a id="dark" href = "#">dark</a>
-                    </li>
-                    <li class="dropdown-item theme-pastel">
-                        <a id="pastel" href = "#">pastel (unfinished)</a>
-                    </li>
-                </ul>
-            </li>
-            <li class ="nav-item">Login</li>
-        </ul>
-    </nav>
-    <header>
-        <span class="logo-wrap">
-            <img src="logo.png" class="logo">
-        </span>
-        <h1>Good at copying tutorials,<br/>Very girl!</h1>
-        <p>Very proud of her progress :3</p>
-    </header>
-    <main>
-        <h2><u>Lorem ipsum dolor sit amet</u></h2>
-        <p>consectetur adipiscing elit. Aliquam quis porta lectus. Morbi auctor imperdiet libero et pretium. Nulla rhoncus, eros non cursus hendrerit, elit enim porta nibh, malesuada mattis leo elit et dolor. Nunc iaculis massa dolor. Proin eu nunc magna. In tempus semper tempus. Curabitur consectetur aliquam euismod. Suspendisse quam ipsum, volutpat et pretium quis, mattis at tortor.</p>
-    </main>
+<body>
+    <!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
+    If you are not redirected automatically, follow this <a href='../home'>link to get to the docs.</a>.
 </body>
+
 </html>
