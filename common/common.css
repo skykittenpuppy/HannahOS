@@ -8,7 +8,8 @@
     --gray6: #12181b;
     --blue: #0084a5;
     --purple: #a82dd1;
-    --yellow: #fff565;
+    --link: #97c0ff;
+    --important: #ff0000;
 }
 .light {
     --bg: var(--gray0);
@@ -17,7 +18,7 @@
     --bg-dropdown: var(--gray0);
     --text: var(--gray6);
     --border-color: var(--blue);
-    --bg-solar: var(--yellow);
+    --focus-item: var(--blue);
     --shadow: rgba(0,0,0,0.5);
 }
 .dark{
@@ -27,11 +28,12 @@
     --bg-dropdown: var(--gray6);
     --text: var(--gray0);
     --border-color: var(--purple);
-    --bg-solar: var(--blue);
+    --focus-item: var(--blue);
     --shadow: rgba(0,0,0,0.9);
 }
 .pastel{
     --gray0: #ffaaff;
+    --link: #f061f5;
 }
 
 * {
@@ -43,7 +45,6 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   color: var(--text);
   background: var(--bg);
-  /*transition: all 100ms ease-in-out, color 150ms ease-in-out;*/
 }
 ul{
   list-style-type: none;
@@ -51,11 +52,9 @@ ul{
   padding: 0;
 }
 a{
-  color: var(--text);
-  text-decoration: none;
-  transition: color 200ms ease-in-out 350ms;
+  color: var(--link);
+  text-decoration: inherit;
 }
-
 .navbar{
   height: 70px;
   width:100%;

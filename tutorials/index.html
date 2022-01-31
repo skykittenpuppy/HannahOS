@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Tutorials</title>
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../common/common.css" />
@@ -12,15 +12,46 @@
 
 <body class="light">
     <header>
-        <span class="logo-wrap">
-            <img src="logo.png" class="logo">
-        </span>
-        <h1>Good at copying tutorials,<br/>Very girl!</h1>
-        <p>Very proud of her progress :3</p>
+        <div class="spacer"></div>
+        <img class="logo" src="Isaac.png">
+        <h1>Binding of Isaac: Repentance<br/>Modding tutorials</h1>
+        <div class="spacer"></div>
     </header>
     <main>
-        <h2><u>Lorem ipsum dolor sit amet</u></h2>
-        <p>consectetur adipiscing elit. Aliquam quis porta lectus. Morbi auctor imperdiet libero et pretium. Nulla rhoncus, eros non cursus hendrerit, elit enim porta nibh, malesuada mattis leo elit et dolor. Nunc iaculis massa dolor. Proin eu nunc magna. In tempus semper tempus. Curabitur consectetur aliquam euismod. Suspendisse quam ipsum, volutpat et pretium quis, mattis at tortor.</p>
+        <ul class="tutorial-list">
+            <li class="tutorial">
+                <span>
+                    <a href = "../tutorials/GettingStarted"><h2>Getting Started...</h2></a>
+                    <p>Setting up a mod folder</p>
+                    <h5>[No lua required!]</h5>
+                </span>
+                <img class="thumbnail" src="../tutorials/GettingStarted/thumb.png">
+            </li>
+            <li class="tutorial">
+                <span>
+                    <a href = "../tutorials/MakingItem"><h2>Your First Item!</h2></a>
+                    <p>Adding our first item to the game!</p>
+                    <h5>[No lua required!]</h5>
+                </span>
+                <img class="thumbnail" src="../tutorials/MakingItem/thumb.png">
+            </li>
+            <li class="tutorial">
+                <span>
+                    <a href = "../tutorials/MakingChar"><h2>Making A New Character</h2></a>
+                    <p>Making a basic new character</p>
+                    <h5>[No lua required!]</h5>
+                </span>
+                <img class="thumbnail" src="../tutorials/MakingChar/thumb.png">
+            </li>
+            <li class="tutorial">
+                <span>
+                    <a href = "../tutorials/ModifyStats"><h2>Modifying Stats</h2></a>
+                    <p>Changing the character's stats in certain situations</p>
+                    <h5>[Lua required]</h5>
+                </span>
+                <img class="thumbnail" src="../tutorials/ModifyStats/thumb.png">
+            </li>
+        </ul>
     </main>
 </body>
 </html>
