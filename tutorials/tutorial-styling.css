@@ -19,3 +19,6 @@ h2 {
     height: 150px;
     filter: drop-shadow(2px 5px 5px var(--shadow));
 }
+.title{
+    width: 500px;
+}
