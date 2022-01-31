@@ -1,0 +1,11 @@
+main {
+    margin: 10px;
+}
+header{
+  padding: 1em;
+  background: var(--bg-nav);
+  margin-bottom: 1em;
+  padding-bottom: 3.5em;
+  text-align: center;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%, 0% 0%);
+}
