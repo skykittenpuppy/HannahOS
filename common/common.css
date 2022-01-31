@@ -54,6 +54,13 @@ ul{
 a{
   color: var(--link);
   text-decoration: inherit;
+  display: flex;
+  align-items: center;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
 }
 .navbar{
   height: 70px;
@@ -68,33 +75,46 @@ a{
   justify-content: space-evenly;
   height: 100%;
 }
+.nav-item{
+    width: calc(20vw - 50px);
+    display: flex;
+    align-items: bottom;
+    justify-content: center;
+}
 .dropdown{
     position: absolute;
-    width: 500px;
     opacity: 0;
-    z-index: 2;
+    z-index: -1;
     background: var(--bg-dropdown);
-    border-top: 2px solid var(--border-color);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top: 3px solid var(--border-color);
+    border-radius: 8px;
+    width: 540px;
+    height: 60px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 3rem;
-    margin-top: 2rem;
-    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 10px;
+    row-gap: 15px;
 
     box-shadow: 5px 10px 10px var(--shadow);
-    transform: translateX(-44%);
-
-    transition: opacity .15s ease-in-out;
+    transform: translateY(50px);
+}
+.dropdown.vertical{
+    width: 180px;
+    height: 180px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
 }
 .has-dropdown:focus-within .dropdown{
     opacity: 1;
+    z-index: 2;
     pointer-events: auto;
+}
+.dropdown-item{
+    display:flex;
+    align-items: center;
 }
 .dropdown-item a {
     width: 100%;

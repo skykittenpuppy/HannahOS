@@ -8,4 +8,14 @@ header{
   padding-bottom: 3.5em;
   text-align: center;
   clip-path: polygon(50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%, 0% 0%);
+  display: flex;
+  justify-content: center;
+}
+h2 {
+    color: var(--important);
+}
+.thumbnail{
+    width: 150px;
+    height: 150px;
+    filter: drop-shadow(2px 5px 5px var(--shadow));
 }
