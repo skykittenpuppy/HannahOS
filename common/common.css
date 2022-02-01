@@ -197,7 +197,3 @@ header{
     .nav-item a {font-size: 0;}
     .nav-item a svg {width: 30px; height: 30px}
 }
-@media (max-width: 500px) {
-    .nav-item a {font-size: 0;}
-    .nav-item a svg {width: 30px; height: 30px}
-}
