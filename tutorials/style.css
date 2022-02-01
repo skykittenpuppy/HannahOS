@@ -15,7 +15,7 @@ header{
 }
 h2{
     margin-top:0;
-    margin-bottom:10px;
+    margin-bottom:0.25em;
 }
 h5{
     font-size: medium;
@@ -45,13 +45,21 @@ h5{
     justify-content: space-between;
     filter: drop-shadow(2px 5px 5px var(--shadow));
 }
-@media (min-width: 1000px) {
+@media (min-width: 500px) {
     .tutorial-list{grid-template-columns: repeat(2, 1fr);}
     .tutorial{width: calc(50vw - 50px);}
 }
-@media (min-width: 1500px) {
+@media (min-width: 1000px) {
     .tutorial-list{grid-template-columns: repeat(3, 1fr);}
     .tutorial{width: calc(33vw - 50px);}
+}
+@media (min-width: 1500px) {
+    .tutorial-list{grid-template-columns: repeat(4, 1fr);}
+    .tutorial{width: calc(25vw - 50px);}
+}
+.tutorial span{
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
 }
 .tutorial a{
     text-decoration: underline;
@@ -60,7 +68,6 @@ h5{
 }
 .tutorial p{
     margin: 0;
-    height: 60px;
 }
 .thumbnail{
     width: 120px;
