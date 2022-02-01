@@ -2,7 +2,6 @@ main {
     margin: 10px;
 }
 header{
-  padding: 1em;
   background: var(--bg-head);
   margin-bottom: 1em;
   padding-bottom: 3.5em;

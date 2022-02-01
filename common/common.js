@@ -1,14 +1,14 @@
 const head = document.head;
 const body = document.body;
 
-var importItems = document.createElement("span");
+/*var importItems = document.createElement("span");
 importItems.innerHTML = 
 `
 <link rel="stylesheet" href="common/common.css" />
 <!--<link rel="stylesheet" href="common/font-awesome.css"/>-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&amp;display=swap">
 `
-head.appendChild(importItems);
+head.appendChild(importItems);*/
 
 var navBar = document.createElement("nav");
 navBar.setAttribute("class", "navbar");
@@ -46,7 +46,7 @@ navBar.innerHTML =
             <li class="dropdown-item theme-pastel">
                 <a id="pastel" href="javascript: void(0);">
                 <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
-                Pastel</a>
+                Pink</a>
             </li>
         </ul>
     </li>
