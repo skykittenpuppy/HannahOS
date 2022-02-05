@@ -21,6 +21,9 @@ h5{
     margin: 0;
     color:var(--important);
 }
+.no-lua{
+    filter: hue-rotate(160deg);
+}
 .logo{
     width: 150px;
     height: 150px;

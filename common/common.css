@@ -49,8 +49,23 @@
 html{
     scroll-behavior: smooth;
 }
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background: var(--bg-dropdown);
+    border-radius: 0px 0px 5px 5px;
+}
+::-webkit-scrollbar-thumb{
+    background: var(--focus-item);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: var(--link);
+}
 * {
     transition: all 200ms ease-in-out;
+    scrollbar-width: thin;
 }
 body {
   margin: 0;
