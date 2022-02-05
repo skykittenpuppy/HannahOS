@@ -45,6 +45,7 @@
     --gray6: #681A47;
     --link: #f061f5;
 }
+/*TODO: add custom scrollbar*/
 html{
     scroll-behavior: smooth;
 }
@@ -206,7 +207,7 @@ header{
 .skip-to-main:focus-within{
     transform: translateY(70px);
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .nav-item a {font-size: 0;}
-    .nav-item a svg {width: 30px; height: 30px}
+    .icon {width: 30px; height: 30px}
 }
