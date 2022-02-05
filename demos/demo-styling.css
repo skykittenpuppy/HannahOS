@@ -1,0 +1,22 @@
+.navbar-nav{
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content: space-between;
+}
+.nav-item{
+    width: 100px;
+    height: 70px;
+}
+.nav-item.title{
+    width: 200px;
+}
+.nav-item a{
+    font-size: inherit;
+}
+.icon{
+    height:20px;
+    width:20px;
+}
+header{
+    padding-top: 70px;
+}

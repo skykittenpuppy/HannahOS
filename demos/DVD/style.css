@@ -1,26 +1,6 @@
-.navbar-nav{
-    padding-left: 50px;
-    padding-right: 50px;
-    justify-content: space-between;
-}
-.nav-item{
-    width: 100px
-}
-.nav-item.title{
-    width: 200px;
-}
-.nav-item a{
-    font-size: inherit;
-}
-.icon{
-    height:20px;
-    width:20px;
-}
+
 body{
     background: black;
-}
-header{
-    padding-top: 70px;
 }
 main{
     width:100vw;
