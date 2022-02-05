@@ -40,27 +40,27 @@ h2{
     filter: drop-shadow(2px 5px 5px var(--shadow));
 }
 @media (min-width: 500px) {
-    .tutorial-list{grid-template-columns: repeat(2, 1fr);}
-    .tutorial{width: calc(50vw - 50px);}
+    .demo-list{grid-template-columns: repeat(2, 1fr);}
+    .demo{width: calc(50vw - 50px);}
 }
 @media (min-width: 1000px) {
-    .tutorial-list{grid-template-columns: repeat(3, 1fr);}
-    .tutorial{width: calc(33vw - 50px);}
+    .demo-list{grid-template-columns: repeat(3, 1fr);}
+    .demo{width: calc(33vw - 50px);}
 }
 @media (min-width: 1500px) {
-    .tutorial-list{grid-template-columns: repeat(4, 1fr);}
-    .tutorial{width: calc(25vw - 50px);}
+    .demo-list{grid-template-columns: repeat(4, 1fr);}
+    .demo{width: calc(25vw - 50px);}
 }
-.tutorial span{
+.demo span{
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
 }
-.tutorial a{
+.demo a{
     text-decoration: underline;
     display: flex;
     align-items: center;
 }
-.tutorial p{
+.demo p{
     margin: 0;
 }
 .thumbnail{

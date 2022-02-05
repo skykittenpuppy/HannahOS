@@ -45,7 +45,6 @@
     --gray6: #681A47;
     --link: #f061f5;
 }
-/*TODO: add custom scrollbar*/
 html{
     scroll-behavior: smooth;
 }
