@@ -1,0 +1,67 @@
+.navbar-nav{
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content: space-between;
+}
+.nav-item{
+    width: 100px
+}
+.nav-item.title{
+    width: 200px;
+}
+.nav-item a{
+    font-size: inherit;
+}
+.icon{
+    height:20px;
+    width:20px;
+}
+body{
+    background: black;
+}
+header{
+    padding-top: 70px;
+}
+main{
+    width:100vw;
+    height: calc(100vh - 70px);
+    border: 10px;
+}
+img{
+    padding: 10px;
+    filter: invert();
+    animation: bounce 10s linear infinite;
+    transform: translate(0, 0);
+}
+@keyframes bounce {
+    from{
+        transform: translate(
+            calc(0vw - 0%), 
+            calc(0vh - 0%)
+        );
+    }
+    25%{
+        transform: translate(
+            calc(100vw - 100%), 
+            calc(50vh - 75%)
+        );
+    }
+    50%{
+        transform: translate(
+            calc(0vw - 0%), 
+            calc(100vh - 150%)
+        );
+    }
+    75%{
+        transform: translate(
+            calc(100vw - 100%), 
+            calc(50vh - 75%)
+        );
+    }
+    to{
+        transform: translate(
+        calc(0vw - 0%), 
+        calc(0vh - 0%)
+    );
+    }
+}
