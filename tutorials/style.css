@@ -40,12 +40,16 @@ h5{
 .tutorial{
     padding: 10px;
     width: calc(100vw - 50px);
-    height: 120px;
+    height: 150px;
     background: var(--focus-item);
     border-radius: 25px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     filter: drop-shadow(2px 5px 5px var(--shadow));
+}
+.tutorial span{
+    height: 150px;
 }
 @media (min-width: 500px) {
     .tutorial-list{grid-template-columns: repeat(2, 1fr);}
