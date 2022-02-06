@@ -75,6 +75,12 @@ body {
   color: var(--text);
   background: var(--bg);
 }
+img{
+    image-rendering: pixelated;
+}
+.no-pixel{
+    image-rendering: auto;
+}
 /*.loading{
     background: transparent;
     z-index: -100;
