@@ -21,7 +21,7 @@
 
 <body class="dark">
     <header>
-        <img class="thumbnail" src="tutorials/MakingItem/thumb.png">
+        <img class="thumbnail" src="tutorials/MakingChar/thumb.png">
         <span class="title">
             <h1><u>Making a new Character</u></h1>
         </span>
@@ -29,15 +29,54 @@
     <main>
         <ul>
             <li class="step">
-                <h2><u>Step 1:</u></h2>
+                <h2><u>Step 1: <em>players.xml</em></u></h2>
                 <span class="substep">
                     <span>
-                        <h4>Header.</h4>
+                        <h4>Navigate to the /content/ folder in your mod.</h4>
                         <p>
-                            Content
+                            <h5>(if you don't have one, make sure you followed <a href="tutorials/GettingStarted/">This</a>)</h5><br/>
+                            create a folder called "gfx", and a text document called "players.xml" (make sure you have file name extensions enabled. Windows should warn you about changing the file type)
                         </p>
                     </span>
-                    <img src="tutorials/MakingItem/step1.png" />
+                    <img class="no-pixel" src="tutorials/MakingChar/step1.png" />
+                </span>
+                <span class="substep">
+                    <span>
+                        <h4>Open the players.xml file in your text editor of choice.</h4>
+                        <p>
+                            Within the file, add:
+                            <div class="codeblock">
+                                <code><div>&lt;players root="gfx/characters/costumes/"
+    portraitroot="gfx/ui/stage/" 
+    nameimageroot="gfx/ui/boss/">
+    &lt;player name="Bluesaac" skin="Character_-01_Isaac.png" hp="6" bombs="1"
+        nameimage="PlayerName_-01_Isaac.png" 
+        portrait="PlayerPortrait_-01_Isaac.png" skinColor="-1"
+        birthright="???" />
+    &lt;player name="Bluesaac" skin="Character_-01b_Isaac.png" hp="6" bombs="1"
+        nameimage="PlayerName_-01b_Isaac.png" 
+        portrait="PlayerPortrait_-01b_Isaac.png" skinColor="-1"
+        birthright="???"
+        bSkinParent="Bluesaac"/>
+&lt;/players></div></code>
+                            </div>
+                            If you want to, change the name and spritesheet paths, but if you just want an idea of the process, I would recommend leaving them alone.
+                        </p>
+                    </span>
+                    <img class="no-pixel" src="tutorials/MakingChar/step2.png" />
+                </span>
+            </li>
+            <li class="step">
+                <h2><u>Step 2: <em>sprites and the ANM2 format</em></u></h2>
+                <span class="substep">
+                    <span>
+                        <h4>Open the /gfx/ folder we made in the last step.</h4>
+                        <p>
+                            For this step i would recommend opening up the original game files to borrow sprites<br/>
+                            (To be continued.)
+                        </p>
+                    </span>
+                    <img class="no-pixel" src="tutorials/MakingChar/step3.png" />
                 </span>
             </li>
             <li class="step final">

@@ -57,20 +57,20 @@ p{
     padding-bottom: 10px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     justify-content: space-between;
 }
 .substep span{
-    margin-right: 10px;
-    width: 100vw;
+    margin-right: 15px;
 }
 .substep img{
-    width: min(300px, 50vw);
-    height: auto;
+    width: min(50vw, 400px);
 }
 .codeblock{
     margin-top: 5px;
     padding: 5px;
     background: var(--codeblock);
+    width: 39vw;
 }
 p a{
     background: var(--codeblock);
@@ -80,4 +80,18 @@ p a{
     display: inline;
     margin-right: 0;
     word-wrap: break-word;
+}
+h5 a{
+    background: var(--codeblock);
+    font-size: 10;
+    color: var(--link);
+    text-decoration: underline;
+    display: inline;
+    margin-right: 0;
+    word-wrap: break-word;
+}
+code div{
+    width: 39vw;
+    white-space:pre;
+    overflow-x: scroll;
 }

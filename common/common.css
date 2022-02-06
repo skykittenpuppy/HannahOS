@@ -18,6 +18,7 @@
     --bg-dropdown: var(--gray2);
     --text: var(--gray5);
     --border-color: var(--light-highlight);
+    --scrollbar: var(--dark-highlight);
     --selected: var(--important);
     --focus-item: var(--light-highlight);
     --shadow: rgba(0,0,0,0.5);
@@ -31,6 +32,7 @@
     --bg-dropdown: var(--gray6);
     --text: var(--gray0);
     --border-color: var(--dark-highlight);
+    --scrollbar: var(--light-highlight);
     --selected: var(--important);
     --focus-item: var(--dark-highlight);
     --shadow: rgba(0,0,0,0.9);
@@ -58,7 +60,7 @@ html{
     border-radius: 0px 0px 5px 5px;
 }
 ::-webkit-scrollbar-thumb{
-    background: var(--focus-item);
+    background: var(--scrollbar);
     border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover{
