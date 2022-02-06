@@ -39,7 +39,13 @@ p{
     margin-bottom: 20px;
     background: var(--focus-item);
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
     filter: drop-shadow(2px 5px 5px var(--shadow));
+}
+.final{
+    align-items: center;
+    font-size: larger;
 }
 .substep{
     padding-bottom: 10px;
