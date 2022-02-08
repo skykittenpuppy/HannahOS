@@ -103,6 +103,7 @@ a{
   text-decoration: inherit;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 button{
   color: var(--link);
@@ -111,6 +112,7 @@ button{
   text-decoration: inherit;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 header{
     padding-top: 90px;
