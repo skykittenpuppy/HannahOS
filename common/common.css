@@ -98,6 +98,12 @@ a{
   display: flex;
   align-items: center;
 }
+.nav-link{
+  color: var(--link);
+  text-decoration: inherit;
+  display: flex;
+  align-items: center;
+}
 header{
     padding-top: 90px;
 }
@@ -115,9 +121,11 @@ header{
   background: var(--bg-nav);
   color: var(--text);
   font-weight: bold;
-  z-index: 1;
+  z-index: 2;
 }
 .navbar-nav{
+    padding-left: 10vw;
+    padding-right: 10vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -130,7 +138,7 @@ header{
     justify-content: center;
 }
 .dropdown{
-    position: absolute;
+    position: fixed;
     opacity: 0;
     background: var(--bg-dropdown);
     border-top: 3px solid var(--border-color);
@@ -145,8 +153,10 @@ header{
     row-gap: 15px;
 
     box-shadow: 5px 10px 10px var(--shadow);
-    transform: translateY(-500px);
+    top: -200px;
+    transform: translateX(calc(-50% + calc(10vw - 25px)));
     transition: all 0.2s ease-in-out, transform 0s;
+    z-index: 0;
 }
 .dropdown.vertical{
     width: 180px;
@@ -157,7 +167,7 @@ header{
 }
 .has-dropdown:focus-within .dropdown{
     opacity: 1;
-    transform: translateY(50px);
+    top:70px;
     pointer-events: auto;
 }
 .dropdown-item{
@@ -231,10 +241,16 @@ header{
 .skip-to-main:focus-within{
     transform: translateY(70px);
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    .nav-item .nav-link {font-size: 0;}
     .nav-item a {font-size: 0;}
+    .dropdown{transform: translateX(calc(-50% + 25px));}
     .icon {width: 50px; height: 50px}
 }
 .dropdown-item a {
     font-size: 16px;
+}
+.associate{
+    width: 2rem;
+    height: 2rem;
 }
