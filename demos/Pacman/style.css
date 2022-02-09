@@ -2,8 +2,9 @@ main{
     width: 100vw;
     height: calc(100vh - 70px);
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
 }
 canvas{ 
     aspect-ratio: 224 / 288;
@@ -11,4 +12,12 @@ canvas{
     max-height: 100%;
     width: 100%;
     image-rendering: pixelated;
+}
+button{
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: x-large;
+    color: cyan;
+    background: red;
 }

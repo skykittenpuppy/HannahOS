@@ -1,5 +1,6 @@
 var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
+var button = document.querySelector("button");
 var spriteSheetURL = "demos/Pacman/Sprites2.png";
 var image = new Image();
 image.src = spriteSheetURL;
@@ -10,10 +11,36 @@ function GetSpritePos(num){
     else if (num < 32) {return {x:(num-16)*8, y: 8}}
     else if (num < 36) {return {x: 16, y: (num-31)*16}}
 }
-function GetGhostTarget(i){
-    if (i == 0) return {x: pacman.x, y: pacman.y}
-    else if (i == 1) return {x: pacman.x + 2*((pacman.f-2)%2), y: pacman.y + 2*((pacman.f-1)%2)}
-    else return {x: 0, y: 0};
+function GetGhostTarget(i, state){
+    if (state == "chase") {
+        if (i == 0) return {x: pacman.x, y: pacman.y, c:"#ff0000"}
+        else if (i == 1) return {x: pacman.x + 2*((pacman.f-2)%2), y: pacman.y + 2*((pacman.f-1)%2), c:"#ffaaaa"}
+        else if (i == 2) return {x: pacman.x + (pacman.x - ghosts[0].x), y: pacman.y + (pacman.y - ghosts[0].y), c:"#00ffff"}
+        else if (i == 3){
+            const g = ghosts[i];
+            const d = (g.x-pacman.x)*(g.x-pacman.x) + (g.y-pacman.y)*(g.y-pacman.y);
+            if (d > 25) return {x: pacman.x, y: pacman.y, c:"#ffaa00"}
+            else return {x: 0, y: 34, c:"#ffaa00"}
+        }
+    }
+    else if (state == "scatter") {
+        if (i == 0) return {x: 25, y: -1, c:"#ff0000"}
+        else if (i == 1) return {x: 03, y: -1, c:"#ffaaaa"}
+        else if (i == 2) return {x: 27, y: 34, c:"#00ffff"}
+        else if (i == 3) return {x: 00, y: 34, c:"#ffaa00"}
+    }
+    else if (state == "frightened") {
+        if (i == 0) return {x: ghosts[i].x, y: ghosts[i].y, c:"#ff0000"}
+        else if (i == 1) return {x: ghosts[i].x, y: ghosts[i].y, c:"#ffaaaa"}
+        else if (i == 2) return {x: ghosts[i].x, y: ghosts[i].y, c:"#00ffff"}
+        else if (i == 3) return {x: ghosts[i].x, y: ghosts[i].y, c:"#ffaa00"}
+    }
+    else if (state == "eaten") {
+        if (i == 0) return {x: 14, y: 16, c:"#ff0000"}
+        else if (i == 1) return {x: 14, y: 16, c:"#ffaaaa"}
+        else if (i == 2) return {x: 14, y: 16, c:"#00ffff"}
+        else if (i == 3) return {x: 14, y: 16, c:"#ffaa00"}
+    }
 }
 var mazes = [
     [
@@ -94,13 +121,22 @@ var mazes = [
     ],
 ];
 var ghosts = [
-    {x: 12, y: 15, facing: 1+2, state: "chase"},
-    {x: 13, y: 15, facing: 1+2, state: "chase"},
-    {x: 14, y: 15, facing: 1+2, state: "chase"},
-    {x: 15, y: 15, facing: 1+2, state: "chase"},
-    //{x: 11, y: 18, facing: 0, state: "sleep"},
-    //{x: 13, y: 18, facing: 2, state: "sleep"},
-    //{x: 15, y: 18, facing: 0, state: "sleep"},
+    {type: 0, x: 12, y: 15, facing: 1+2, state: "chase"},
+    {type: 0, x: 12, y: 15, facing: 1+2, state: "scatter"},
+    {type: 0, x: 12, y: 15, facing: 1+2, state: "frightened"},
+    {type: 0, x: 12, y: 15, facing: 1+2, state: "eaten"},
+    {type: 1, x: 13, y: 15, facing: 1+2, state: "chase"},
+    {type: 1, x: 13, y: 15, facing: 1+2, state: "scatter"},
+    {type: 1, x: 13, y: 15, facing: 1+2, state: "frightened"},
+    {type: 1, x: 13, y: 15, facing: 1+2, state: "eaten"},
+    {type: 2, x: 14, y: 15, facing: 1+2, state: "chase"},
+    {type: 2, x: 14, y: 15, facing: 1+2, state: "scatter"},
+    {type: 2, x: 14, y: 15, facing: 1+2, state: "frightened"},
+    {type: 2, x: 14, y: 15, facing: 1+2, state: "eaten"},
+    {type: 3, x: 15, y: 15, facing: 1+2, state: "chase"},
+    {type: 3, x: 15, y: 15, facing: 1+2, state: "scatter"},
+    {type: 3, x: 15, y: 15, facing: 1+2, state: "frightened"},
+    {type: 3, x: 15, y: 15, facing: 1+2, state: "eaten"},
 ];
 var pacman = {x: 13, y: 21, f:1};
 
@@ -111,6 +147,13 @@ image.onload = function() {
     setInterval(RenderMaze, 100);
     setInterval(RenderGhosts, 100);
     setInterval(ComputeGhosts, 100);
+}
+button.onclick = function() {
+    /*ComputeGhosts();
+    ComputeGhosts();
+    RenderMaze();
+    RenderGhosts();
+    ComputeGhosts();*/
 }
 
 function RenderMaze() {
@@ -135,9 +178,8 @@ function RenderMaze() {
     }
 }
 function RenderGhosts() {
-    for (let i = 0; i < 4; i++){
-        var c = ghosts[i];
-        var p = GetSpritePos(32+i);
+    for (const c of ghosts){
+        var p = GetSpritePos(32+c.type);
         context.drawImage(
             image,
             p.x, p.y,
@@ -169,10 +211,13 @@ function RenderGhosts() {
     }
 }
 function ComputeGhosts() {
-    for (let i = 0; i < 4; i++){
-        var c = ghosts[i];
-        if (c.state != "chase") continue;
+    for (const c of ghosts){
         let o = [];
+        if (c.state=="eaten" && (mazes[curMaze][c.y][c.x] == 31 || mazes[curMaze][c.y][c.x] == 16)){
+            c.facing = 2;
+            c.y = c.y+1;
+            continue;
+        }
         for (let d = 0; d < 4; d++){
             //console.log(c.facing + ", " +d);
             if (((c.facing+2)%4) == d) continue;
@@ -183,7 +228,7 @@ function ComputeGhosts() {
             else if (d == 3) m.x = 1;
             const w = mazes[curMaze][c.y+m.y][c.x+m.x]
             //console.log(w);
-            if (w != 0 && w != undefined) continue;
+            if (!(w == 0 || w == undefined || (w == 31 && c.state=="eaten"))) continue;
             context.drawImage(
                 image,
                 128, 0,
@@ -193,19 +238,18 @@ function ComputeGhosts() {
             );
             o[d] = m;
         }
-        const t = GetGhostTarget(i);
-        context.drawImage(
-            image,
-            4, 20+i*16,
-            8, 8,
-            (t.x)*8, (t.y)*8,
-            8, 8,
-        );
+        const t = GetGhostTarget(c.type, c.state);
+        context.beginPath();
+        context.moveTo(c.x*8+4, c.y*8+4);
+        context.lineTo(t.x*8+4, t.y*8+4);
+        context.strokeStyle = t.c;
+        context.stroke();
         let b = {x:0, y:0, f:0, d:10000000};
         for (let d = 0; d < 4; d++){
             if (o[d] == undefined) continue;
             m = o[d];
             m.d = (c.x+m.x-t.x)*(c.x+m.x-t.x) + (c.y+m.y-t.y)*(c.y+m.y-t.y);
+            if (c.state == "frightened") m.d = Math.random()*100;
             //console.log(m.f + ", " + m.x + ", " + m.y + ", " + m.d);
             if (m.d < b.d){
                 b = m;
