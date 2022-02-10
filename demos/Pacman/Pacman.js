@@ -150,7 +150,7 @@ var ghosts = [
     {type: 3, x: 15, y: 15, facing: 1+2, state: "frightened"},
     {type: 3, x: 15, y: 15, facing: 1+2, state: "eaten"},
 ];
-var pacman = {x: 13, y: 21, f:0};
+var pacman = {x: 14, y: 21, f:0};
 
 image.onload = function() {
     DoFrame();
@@ -163,6 +163,7 @@ function DoFrame(){
     RenderMaze();
     ComputeGhosts();
     RenderGhosts();
+    RenderPacman();
 }
 
 function RenderMaze() {
@@ -224,6 +225,37 @@ function RenderGhosts() {
             8, 8,
         );
     }
+}
+function RenderPacman() {
+    p = {x:0, y:112}
+    context.drawImage(
+        image,
+        p.x, p.y,
+        8, 8,
+        pacman.x*8-4, pacman.y*8-4,
+        8, 8,
+    );
+    context.drawImage(
+        image,
+        p.x+8, p.y,
+        8, 8,
+        pacman.x*8+4, pacman.y*8-4,
+        8, 8,
+    );
+    context.drawImage(
+        image,
+        p.x, p.y+8,
+        8, 8,
+        pacman.x*8-4, pacman.y*8+4,
+        8, 8,
+    );
+    context.drawImage(
+        image,
+        p.x+8, p.y+8,
+        8, 8,
+        pacman.x*8+4, pacman.y*8+4,
+        8, 8,
+    );
 }
 function ComputeGhosts() {
     for (const c of ghosts){
