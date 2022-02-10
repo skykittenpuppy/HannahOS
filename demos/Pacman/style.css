@@ -8,8 +8,6 @@ main{
 }
 canvas{ 
     aspect-ratio: 224 / 288;
-    max-width: 100%;
-    max-height: 100%;
     width: 100%;
     image-rendering: pixelated;
 }

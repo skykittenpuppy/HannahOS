@@ -153,19 +153,16 @@ var ghosts = [
 var pacman = {x: 13, y: 21, f:0};
 
 image.onload = function() {
-    RenderMaze();
-    RenderGhosts();
-    ComputeGhosts();
-    setInterval(RenderMaze, 100);
-    setInterval(RenderGhosts, 100);
-    setInterval(ComputeGhosts, 100);
+    DoFrame();
+    setInterval(DoFrame, 100);
 }
 button.onclick = function() {
-    /*ComputeGhosts();
-    ComputeGhosts();*/
+    DoFrame();
+}
+function DoFrame(){
     RenderMaze();
-    RenderGhosts();
     ComputeGhosts();
+    RenderGhosts();
 }
 
 function RenderMaze() {
@@ -259,11 +256,6 @@ function ComputeGhosts() {
             o[d] = m;
         }
         const t = GetGhostTarget(c);
-        context.beginPath();
-        context.moveTo(c.x*8+4, c.y*8+4);
-        context.lineTo(t.x*8+4, t.y*8+4);
-        context.strokeStyle = t.c;
-        context.stroke();
         let b = {x:0, y:0, f:0, d:10000000};
         for (let d = 0; d < 4; d++){
             if (o[d] == undefined) continue;
@@ -287,5 +279,11 @@ function ComputeGhosts() {
         c.x = (c.x + b.x+28)%28;
         c.y = c.y + b.y;
         c.facing = b.f;
+        context.beginPath();
+        context.moveTo(c.x*8+4, c.y*8+4);
+        context.lineTo(t.x*8+4, t.y*8+4);
+        context.lineWidth = 2;
+        context.strokeStyle = t.c;
+        context.stroke();
     }
 }
