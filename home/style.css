@@ -1,25 +1,45 @@
-main {
-    margin: 10px;
-}
 header{
+  position: relative;
   background: var(--bg-head);
-  margin-bottom: 1em;
+  --star: var(--gray4);
+  --sky: var(--gray5);
+  --bgSize: min(40vw, 10em);
+  --centerVal: calc(var(--bgSize) * 0.17);
+  background:
+  linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+  linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+  linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+  linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+  linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.23 * var(--bgSize)),
+  linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.23 * var(--bgSize)),
+  
+  linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+  linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+  linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+  linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+  linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.73 * var(--bgSize)),
+  linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.73 * var(--bgSize));
+  
+  background-color: var(--sky);
+  background-size: var(--bgSize) var(--bgSize);
+  margin-bottom: 0em;
   padding-bottom: 3.5em;
   text-align: center;
-  clip-path: polygon(50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%, 0% 0%);
+  clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
+  transition: all 0s;
 }
-/*.loading{
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background:black;
-  z-index: 100;
-  transition: 0.5s background-color 0.2s ease-in-out, 0.7s z-index;
-}*/
+
 .logo{
-    width: 300px;
-    height: 300px;
+    width: min(80vw, 300px);
+    height: min(80vw, 300px);
     border-radius: 50%;
-    border: 4px solid var(--border-color);
-    filter: drop-shadow(5px 10px 10px var(--shadow));
+    border: 0.25em solid var(--border-color);
+    box-shadow: 0 0 1.25em 0.2em var(--shadow);
+    transition: all 0s;
+}
+
+header h1,
+header h2,
+header p{
+  filter: drop-shadow(0 0 0.25em var(--shadow));
 }
