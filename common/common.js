@@ -41,11 +41,11 @@ navBar.innerHTML =
             Theme
         </a>
         <ul class="dropdown vertical">
-            <!--<li class="dropdown-item theme-light">
-                <button id="light">
+            <li class="dropdown-item theme-light">
+                <div id="light">
                 <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
-                Light</button>
-            </li>-->
+                Light (Removed)</div>
+            </li>
             <li class="dropdown-item theme-dark">
                 <button id="dark">
                 <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
@@ -105,6 +105,7 @@ const pastelButton = document.getElementById("pastel");
 const theme = localStorage.getItem("theme");
 const pastel = localStorage.getItem("pastelEnabled");
 //console.log(theme, pastel);
+if (theme == "light") {theme = "dark"}
 if (theme) {
     for (item of body.classList.values()){
         body.classList.remove(item);
@@ -116,12 +117,12 @@ if (theme) {
 darkButton.onclick = () => {
     body.classList.replace("light", "dark");
     localStorage.setItem("theme", "dark");
-};
+};/*
 lightButton.onclick = () => {
     body.classList.replace("dark", "light");
     localStorage.setItem("theme", "light");
 
-};
+};*/
 pastelButton.onclick = () => {
     if (body.classList.contains("pastel")) {
         body.classList.remove("pastel");

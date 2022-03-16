@@ -117,15 +117,6 @@ a{
   align-items: center;
   cursor: pointer;
 }
-button{
-  color: var(--link);
-  background: transparent;
-  border: 0;
-  text-decoration: inherit;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
 header{
     padding: 1em;
     padding-top: 6em;
@@ -204,14 +195,24 @@ main {
     height: 100%;
     size: 0.7em;
     padding-left: 0.75em;
+    font-size: 1em;
     font-weight: bold;
     color: var(--link);
 }
+.dropdown-item div,
 .dropdown-item button {
+    color: var(--link);
+    background: transparent;
+    border: 0;
+    text-decoration: inherit;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     width: 100%;
     height: 100%;
     size: 0.7em;
     padding-left: 0.75em;
+    font-size: 1em;
     font-weight: bold;
     color: var(--link);
 }
@@ -285,14 +286,6 @@ main {
     .nav-item .nav-link {font-size: 0;}
 }
 
-
-
-.dropdown-item a{
-    font-size: 1em;
-}
-.dropdown-item button{
-    font-size: 1em;
-}
 .associate{
     width: 2em;
     height: 2em;
