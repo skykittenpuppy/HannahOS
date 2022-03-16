@@ -1,7 +1,6 @@
 header{
   position: relative;
 
-  background: var(--bg-head);
   --star: var(--gray4);
   --sky: var(--gray5);
   --bgSize: min(40vw, 10em);
@@ -23,7 +22,7 @@ header{
   
   background-color: var(--sky);
   background-size: var(--bgSize) var(--bgSize);
-  
+
   margin-bottom: 0em;
   padding-bottom: 3.5em;
   text-align: center;

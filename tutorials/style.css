@@ -1,18 +1,15 @@
 header{
     position: relative;
 
-    background-color: var(--sky);
-    background-size: var(--bgSize) var(--bgSize);
     --thick: var(--gray4);
     --thin: var(--gray4);
     --bg: var(--gray5);
-    --bgSize: min(20vw, 5em);
-    --centerVal: calc(var(--bgSize) * 0.4);
+    --bgSize: 5em;
     background: 
-    linear-gradient( 0deg, var(--thick) 4%, transparent 4%),
-    linear-gradient(90deg, var(--thick) 4%, transparent 4%),
-    linear-gradient( 0deg, var(--thin ) 4%, transparent 4%),
-    linear-gradient(90deg, var(--thin ) 4%, transparent 4%);
+    linear-gradient( 0deg, var(--thick) 5%, transparent 5%),
+    linear-gradient(90deg, var(--thick) 5%, transparent 5%),
+    linear-gradient( 0deg, var(--thin ) 5%, transparent 5%),
+    linear-gradient(90deg, var(--thin ) 5%, transparent 5%);
     background-color: var(--bg);
     background-size: var(--bgSize) var(--bgSize),
                      var(--bgSize) var(--bgSize),
@@ -73,14 +70,13 @@ h5{
     column-gap: 0.75em;
     row-gap: 1em;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-template-rows: repeat(100, 10rem);
     align-content: center;
 }
 .tutorial{
     margin: 1rem;
     padding: 1rem;
     width: calc(100% - 2rem);
-    height: calc(100% - 2rem);
+    height: 8rem;
     background: var(--focus-item);
     border-radius: 25px;
     display: flex;
