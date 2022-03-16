@@ -2,7 +2,7 @@ header{
     position: relative;
 
     --top: var(--gray5);
-    --right: #2b293f;
+    --right: var(--gray4-5);
     --left: var(--gray4);
     --pos1: min(20vw, 5em);
     --pos2: calc(var(--pos1) / 8 * 14);
