@@ -1,9 +1,6 @@
 header{
     position: relative;
 
-    --top: #f00;
-    --right: #0f0;
-    --left: #00f;
     --top: var(--gray5);
     --right: #2b293f;
     --left: var(--gray4);

@@ -24,6 +24,21 @@
     --shadow: rgba(0,0,0,0.5);
     --link: #306BAC;
     --codeblock: var(--gray1);
+
+    /*Replace light theme with dark theme*/
+    --bg: var(--gray3);
+    --bg-head: linear-gradient(to right, var(--gray4), var(--gray5));
+    --bg-nav: linear-gradient(to right, var(--gray5), var(--gray6));
+    --bg-nav: linear-gradient(to right, var(--gray6), var(--gray6));
+    --bg-dropdown: var(--gray6);
+    --text: var(--gray0);
+    --border-color: var(--dark-highlight);
+    --scrollbar: var(--light-highlight);
+    --selected: var(--important);
+    --focus-item: var(--dark-highlight);
+    --shadow: rgba(0,0,0,0.9);
+    --link: #3066BE;
+    --codeblock: var(--gray4);
 }
 .dark{
     --bg: var(--gray3);
