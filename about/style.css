@@ -1,6 +1,4 @@
 header{
-  position: relative;
-
   --bg: var(--gray5);
   --comb: var(--gray4);
   --width: min(12vw, 10em);
@@ -13,16 +11,4 @@ header{
   linear-gradient( 30deg, var(--bg  ) 24%, var(--comb) 0, var(--comb) 26%, transparent 0, transparent  74%, var(--comb) 0, var(--comb) 76%, var(--bg  ) 0) 50vw 1em,
   linear-gradient( 90deg, var(--comb)  2%, var(--bg  ) 0, var(--bg  ) 98%, var(--comb) 0) 50vw 1em;
   background-size: var(--width) var(--height);
-
-  margin-bottom: 0em;
-  padding-bottom: 3.5em;
-  text-align: center;
-  clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
-  transition: all 0s;
-}
-
-header h1,
-header h2,
-header p{
-  filter: drop-shadow(0 0 0.25em var(--gray5));
 }

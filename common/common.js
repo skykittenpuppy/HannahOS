@@ -102,7 +102,7 @@ const darkButton = document.getElementById("dark");
 const lightButton = document.getElementById("light");
 const pastelButton = document.getElementById("pastel");
 
-const theme = localStorage.getItem("theme");
+let theme = localStorage.getItem("theme");
 const pastel = localStorage.getItem("pastelEnabled");
 //console.log(theme, pastel);
 if (theme == "light") {theme = "dark"}

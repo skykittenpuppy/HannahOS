@@ -1,6 +1,4 @@
 header{
-    position: relative;
-
     --thick: var(--gray4);
     --thin: var(--gray4);
     --bg: var(--gray5);
@@ -16,30 +14,6 @@ header{
                      calc(var(--bgSize) / 5) calc(var(--bgSize) / 5),
                      calc(var(--bgSize) / 5) calc(var(--bgSize) / 5);
     background-position: center;
-    
-    margin-bottom: 0em;
-    padding-bottom: 3.5em;
-    text-align: center;
-    clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
-    transition: all 0s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: min(1rem, 5vw);
-}
-.logo{
-    width: min(80vw, 180px);
-    height: min(80vw, 180px);
-    filter: drop-shadow(0 0 1.25em var(--shadow));
-    transition: all 0s;
-}
-header h1,
-header h2,
-header p{
-  filter: drop-shadow(0 0 0.25em var(--gray5));
-}
-@media (max-width: 800px) {
-    header {flex-direction: column;}
 }
 
 .thumbnail{

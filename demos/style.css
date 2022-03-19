@@ -1,6 +1,4 @@
 header{
-    position: relative;
-
     --top: var(--gray5);
     --right: var(--gray4-5);
     --left: var(--gray4);
@@ -15,21 +13,6 @@ header{
     background-color: var(--right);
     background-size: var(--pos1) var(--pos2);
     background-position: 50vw 0, 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2);
-    
-    margin-bottom: 0em;
-    padding-bottom: 3.5em;
-    text-align: center;
-    clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
-    transition: all 0s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: min(1rem, 5vw);
-}
-header h1,
-header h2,
-header p{
-  filter: drop-shadow(0 0 0.25em var(--gray5));
 }
 
 .thumbnail{

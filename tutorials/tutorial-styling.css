@@ -1,15 +1,24 @@
-main {
-    margin: 10px;
-}
+*{
+    font-family: 'IBM Plex Sans', sans-serif;}
 header{
-  background: var(--bg-head);
-  margin-bottom: 1em;
-  padding-bottom: 3.5em;
-  text-align: center;
-  clip-path: polygon(50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%, 0% 0%);
-  display: flex;
-  justify-content: center;
+    --thick: var(--gray4);
+    --thin: var(--gray4);
+    --bg: var(--gray5);
+    --bgSize: 5em;
+    background: 
+    linear-gradient( 0deg, var(--thick) 5%, transparent 5%),
+    linear-gradient(90deg, var(--thick) 5%, transparent 5%),
+    linear-gradient( 0deg, var(--thin ) 5%, transparent 5%),
+    linear-gradient(90deg, var(--thin ) 5%, transparent 5%);
+    background-color: var(--bg);
+    background-size: var(--bgSize) var(--bgSize),
+                     var(--bgSize) var(--bgSize),
+                     calc(var(--bgSize) / 5) calc(var(--bgSize) / 5),
+                     calc(var(--bgSize) / 5) calc(var(--bgSize) / 5);
+    background-position: center;
 }
+
+
 h2 {
     margin-top: 0;
     margin-bottom: 5px;

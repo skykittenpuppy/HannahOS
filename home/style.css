@@ -1,6 +1,4 @@
 header{
-  position: relative;
-
   --star: var(--gray4);
   --sky: var(--gray5);
   --bgSize: min(40vw, 10em);
@@ -22,12 +20,7 @@ header{
   
   background-color: var(--sky);
   background-size: var(--bgSize) var(--bgSize);
-
-  margin-bottom: 0em;
-  padding-bottom: 3.5em;
-  text-align: center;
-  clip-path: polygon(0% 0%, 50% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
-  transition: all 0s;
+  flex-direction: column;
 }
 
 .logo{
@@ -37,10 +30,4 @@ header{
     border: 0.25em solid var(--border-color);
     box-shadow: 0 0 1.25em 0.2em var(--shadow);
     transition: all 0s;
-}
-
-header h1,
-header h2,
-header p{
-  filter: drop-shadow(0 0 0.25em var(--gray5));
 }
