@@ -104,11 +104,11 @@ const pastelButton = document.getElementById("pastel");
 
 let theme = "light";
 let pastel = false;
-console.log("a",theme, pastel);
+// console.log("a",theme, pastel);
 if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
 {
     theme = "dark";
-    console.log("b",theme, pastel);
+    // console.log("b",theme, pastel);
 }
 theme = localStorage.getItem("theme");
 pastel = localStorage.getItem("pastelEnabled") || false;
