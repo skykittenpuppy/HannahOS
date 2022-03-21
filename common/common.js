@@ -102,17 +102,31 @@ const darkButton = document.getElementById("dark");
 const lightButton = document.getElementById("light");
 const pastelButton = document.getElementById("pastel");
 
-let theme = localStorage.getItem("theme");
-const pastel = localStorage.getItem("pastelEnabled");
-//console.log(theme, pastel);
-if (theme == "light") {theme = "dark"}
-if (theme) {
-    for (item of body.classList.values()){
-        body.classList.remove(item);
-    }
-    body.classList.add(theme);
-    if (pastel) { body.classList.add("pastel"); }
+let theme = "light";
+let pastel = false;
+console.log("a",theme, pastel);
+if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)
+{
+    theme = "dark";
+    console.log("b",theme, pastel);
 }
+theme = localStorage.getItem("theme");
+pastel = localStorage.getItem("pastelEnabled") || false;
+
+if (theme != "light") {theme = "dark"}
+// console.log("c",theme, pastel);
+
+for (item of body.classList.values()){
+    body.classList.remove(item);
+}
+body.classList.add(theme);
+localStorage.setItem("theme", theme);
+if (pastel)
+{
+    body.classList.add("pastel"); 
+    localStorage.setItem("pastelEnabled", true);
+}
+// console.log("d",theme, pastel);
 
 darkButton.onclick = () => {
     body.classList.replace("light", "dark");
