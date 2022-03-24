@@ -213,6 +213,10 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
 }
+.dropdown.vertical[data-items="2"]{
+    height: 8em;
+    grid-template-rows: repeat(2, 1fr);
+}
 .has-dropdown:focus-within .dropdown{
     opacity: 1;
     top: 5em;
