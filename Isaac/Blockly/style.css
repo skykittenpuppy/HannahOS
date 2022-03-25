@@ -1,0 +1,75 @@
+header{
+    min-height: 0;
+    padding: 0;
+    height: 5em;
+    clip-path: none;
+}
+.navbar-nav{
+    justify-content: space-between;
+}
+.nav-item{
+    width: 7.5em;
+    height: 5em;
+}
+.icon{
+    height:2em;
+    width:2em;
+}
+main{
+    padding: 0;
+}
+*{
+    transition: all 0s;
+}
+#blocklyContainer{
+    color: initial;
+    /*background-color: var(--gray4);*/
+    width: 100%;
+    height: calc(100vh - 5em);
+}
+#blocklyDiv{
+    position: absolute;
+}
+
+/*.blocklyToolboxDiv{
+    background: var(--gray5);
+}
+.blocklyFlyout{
+    background: var(--gray4) !important;
+    border-radius: 0 0.75em 0.75em 0;
+}
+.blocklyFlyoutBackground{display: none;}
+.blocklyTreeRow {
+    padding: 0.25em;
+    margin: 0.25em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+}
+.blocklyTreeRow:hover {
+    background: var(--gray4) !important;
+}
+.blocklyTreeRow.blocklyTreeSelected {
+    background: var(--gray3) !important;
+}
+.blocklyTreeLabel {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--text);
+}
+.blocklyTreeIconClosed {
+    background: var(--gray1);
+    clip-path: polygon(10% 10%, 90% 50%, 10% 90%);
+}
+.blocklyTreeIconOpen {
+    background: var(--gray1);
+    clip-path: polygon(90% 10%, 50% 90%, 10% 10%);
+}
+.blocklyMainBackground{
+    fill: none !important;
+    stroke-width: 0 !important;
+    stroke: none !important;
+    background: var(--gray3) !important;
+    display: none !important;
+}
+.blocklyWorkspace{
+    background: var(--gray3) !important;
+}*/
