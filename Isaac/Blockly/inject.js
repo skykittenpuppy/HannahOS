@@ -20,8 +20,15 @@ var onresize = function(e) {
 };
 window.addEventListener('resize', onresize, false);
 function myUpdateFunction(e) {
-  var code = Blockly.Lua.workspaceToCode(workspace);
-  document.getElementById('blocklyCode').innerText = code;
+  document.getElementById('blocklyCode').style.color = null;
+  try {
+    var code = Blockly.Lua.workspaceToCode(workspace);
+    document.getElementById('blocklyCode').innerText = code;
+  }
+  catch (e) {
+    document.getElementById('blocklyCode').innerText = e+"\n\nPlease (don't yet) report this issue to Hannah. (I know)";
+    document.getElementById('blocklyCode').style.color = 'red';
+  }
   /*const lineNums = document.getElementById('blocklyCodeNums');
   lineNums.innerText = '';
   const temp = code.split('\n');
