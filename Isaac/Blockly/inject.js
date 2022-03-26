@@ -19,5 +19,17 @@ var onresize = function(e) {
   Blockly.svgResize(workspace);
 };
 window.addEventListener('resize', onresize, false);
+function myUpdateFunction(e) {
+  var code = Blockly.Lua.workspaceToCode(workspace);
+  document.getElementById('blocklyCode').innerText = code;
+  const lineNums = document.getElementById('blocklyCodeNums');
+  lineNums.innerText = '';
+  const temp = code.split('\n');
+  temp.pop();
+  temp.forEach(function(_, i) {
+    lineNums.innerText += (i+1) + '\n';
+  });
+}
+workspace.addChangeListener(myUpdateFunction);
 onresize();
 Blockly.svgResize(workspace);

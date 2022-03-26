@@ -1,49 +1,81 @@
 header{
     min-height: 0;
     padding: 0;
-    height: 5em;
+    height: 5rem;
     clip-path: none;
 }
 .navbar-nav{
     justify-content: space-between;
 }
 .nav-item{
-    width: 7.5em;
-    height: 5em;
+    width: 7.5rem;
+    height: 5rem;
 }
 .icon{
-    height:2em;
-    width:2em;
+    height:2rem;
+    width:2rem;
 }
 main{
     padding: 0;
+    height: calc(100vh - 5rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+@media (max-width: 1200px){
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 }
 *{
     transition: all 0s;
 }
-#blocklyContainer{
-    color: initial;
-    /*background-color: var(--gray4);*/
-    width: 100%;
-    height: calc(100vh - 5em);
-}
 #blocklyDiv{
     position: absolute;
 }
+.blocklyCode{
+    margin: 0;
+    background:var(--gray4);
+    display: grid;
+    grid-template-columns: 2em 2px 1fr;
+}
+#blocklyCodeNums{
+    padding-top: 0.5em;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.codeNumLine{
+    background: var(--gray3);
+}
+#blocklyCode{
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    font-family: 'Courier New', Courier, monospace;
+}
 
-/*.blocklyToolboxDiv{
+
+.blocklyToolboxDiv{
     background: var(--gray5);
+    width: min(8rem);
 }
 .blocklyFlyout{
+    z-index: 0;
+    max-width: calc(50% - 8rem);
     background: var(--gray4) !important;
-    border-radius: 0 0.75em 0.75em 0;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
 .blocklyFlyoutBackground{display: none;}
+.blocklyTreeRowContentContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
 .blocklyTreeRow {
-    padding: 0.25em;
-    margin: 0.25em;
-    margin-bottom: 0.5em;
-    border-radius: 0.5em;
+    padding: 0.25rem;
+    margin: 0.25rem;
+    margin-left: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
 .blocklyTreeRow:hover {
     background: var(--gray4) !important;
@@ -51,10 +83,21 @@ main{
 .blocklyTreeRow.blocklyTreeSelected {
     background: var(--gray3) !important;
 }
+.blocklyTreeSeparator{
+    height: 0.25rem;
+    border-radius: 1rem;
+    background: var(--gray4);
+    border-bottom: none;
+    margin: 0.25rem 0.25rem;
+}
 .blocklyTreeLabel {
     font-family: 'IBM Plex Sans', sans-serif;
-    color: var(--text);
+    color: var(--text) !important;
 }
+.blocklyTreeSelected .blocklyTreeLabel {
+    font-weight: bolder;
+}
+.blocklyTreeIcon {align-self: center;}
 .blocklyTreeIconClosed {
     background: var(--gray1);
     clip-path: polygon(10% 10%, 90% 50%, 10% 90%);
@@ -64,12 +107,29 @@ main{
     clip-path: polygon(90% 10%, 50% 90%, 10% 10%);
 }
 .blocklyMainBackground{
-    fill: none !important;
-    stroke-width: 0 !important;
-    stroke: none !important;
+    stroke: transparent !important;
+}
+.blocklySvg{
     background: var(--gray3) !important;
-    display: none !important;
+}
+.blocklySvg:first-child{
+    display: initial !important;
 }
 .blocklyWorkspace{
     background: var(--gray3) !important;
-}*/
+}
+.blocklyScrollbarBackground{
+    z-index: 1;
+    fill: var(--gray5) !important;
+    opacity: initial;
+}
+.blocklyScrollbarHandle{
+    fill: var(--scrollbar) !important;
+    rx: 0.5rem;
+    ry: 0.5rem;
+}
+.blocklyMainWorkspaceScrollbar{
+    background: var(--gray5) !important;
+    /*background: red !important;*/
+}
+.blocklyTrash{display: none;}
