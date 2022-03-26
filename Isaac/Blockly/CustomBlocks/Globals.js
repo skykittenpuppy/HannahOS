@@ -1,21 +1,20 @@
 CategoryColour += 20;
 
-Blockly.Blocks['ModReferenceGet'] = {
+Blockly.Blocks['RegisterMod'] = {
   colour: CategoryColour,
   init: function() {  
     this.appendDummyInput()
-        .appendField("ModReference")
-        .appendField(new Blockly.FieldVariable(
-        "Mod", null, ["ModReference"], "ModReference"), "ModReference");
-    this.setInputsInline(true);
+        .appendField("RegisterMod");
+    this.appendValueInput("ModName")
+        .setCheck("String")
+        .appendField("modName");
     this.setOutput(true, 'ModReference');
     this.setColour(this.colour);
   }
 };
-Blockly.Lua['ModReferenceGet'] = function(block) {
-  var code = block.getFieldValue('ModReference') || "nil";
-  console.log(Blockly.Lua.nameDB_.getName(block.getFieldValue("ModReference")));
-  console.log(block.getFieldValue('ModReference'));
+Blockly.Lua['RegisterMod'] = function(block) {
+  var modName = Blockly.Lua.valueToCode(block, 'ModName', 1000) || '"My Mod"';
+  var code = 'RegisterMod(' + modName + ', 1)';
   return [code, Blockly.Lua.ORDER_ATOMIC];
 }
 Blockly.Blocks["Color"] = {
@@ -49,6 +48,17 @@ Blockly.Blocks["Color"] = {
     this.setColour(this.colour);
   }
 }
+Blockly.Lua['Color'] = function(block) {
+  var r = Blockly.Lua.valueToCode(block, 'R', 1000) || "1";
+  var g = Blockly.Lua.valueToCode(block, 'G', 1000) || "1";
+  var b = Blockly.Lua.valueToCode(block, 'B', 1000) || "1";
+  var a = Blockly.Lua.valueToCode(block, 'A', 1000) || "1";
+  var ro = Blockly.Lua.valueToCode(block, 'RO', 1000) || "0";
+  var go = Blockly.Lua.valueToCode(block, 'GO', 1000) || "0";
+  var bo = Blockly.Lua.valueToCode(block, 'BO', 1000) || "0";
+  var code = "Color("+r+", "+g+", "+b+", "+a+", "+ro+", "+go+", "+bo+")";
+  return [code, Blockly.Lua.ORDER_ATOMIC];
+}
 Blockly.Blocks['Font'] = {
   colour: CategoryColour,
   init: function() {
@@ -58,6 +68,10 @@ Blockly.Blocks['Font'] = {
     this.setColour(this.colour);
   }
 };
+Blockly.Lua['Font'] = function(block) {
+  var code = "Font()";
+  return [code, Blockly.Lua.ORDER_ATOMIC];
+}
 Blockly.Blocks['Game'] = {
   colour: CategoryColour,
   init: function() {
@@ -67,6 +81,10 @@ Blockly.Blocks['Game'] = {
     this.setColour(this.colour);
   }
 };
+Blockly.Lua['Game'] = function(block) {
+  var code = "Game()";
+  return [code, Blockly.Lua.ORDER_ATOMIC];
+}
 Blockly.Blocks["KColor"] = {
   colour: CategoryColour,
   init: function() {
@@ -89,6 +107,14 @@ Blockly.Blocks["KColor"] = {
     this.setColour(this.colour);
   }
 }
+Blockly.Lua['KColor'] = function(block) {
+  var r = Blockly.Lua.valueToCode(block, 'R', 1000) || "1";
+  var g = Blockly.Lua.valueToCode(block, 'G', 1000) || "1";
+  var b = Blockly.Lua.valueToCode(block, 'B', 1000) || "1";
+  var a = Blockly.Lua.valueToCode(block, 'A', 1000) || "1";
+  var code = "KColor("+r+", "+g+", "+b+", "+a+")";
+  return [code, Blockly.Lua.ORDER_ATOMIC];
+}
 
 BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
   "kind": "category",
@@ -97,7 +123,7 @@ BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
   "contents": [
     {
       "kind": "block",
-      "type": "ModReferenceGet",
+      "type": "RegisterMod",
     },
     {
       "kind": "block",

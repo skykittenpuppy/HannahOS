@@ -31,9 +31,11 @@
     <script src="Isaac/Blockly/CustomBlocks/Globals.js"></script>
     <script src="Isaac/Blockly/CustomBlocks/Callbacks.js"></script>
     <script src="Isaac/Blockly/CustomBlocks/Isaac.js"></script>
+    <script src="Isaac/Blockly/CustomBlocks/Game.js"></script>
     <script src="Isaac/Blockly/CustomBlocks/EntityPlayer.js"></script>
     <script> BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {"kind": "sep"}; </script>
     <script src="Isaac/Blockly/CustomBlocks/Enums.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script defer src="Isaac/Blockly/inject.js"></script>
 </head>
 
@@ -59,8 +61,7 @@
         
             </div>
         </div>
-        <!--<code type="text" id="blocklyCode" value="aaa">-->
-        <pre class="blocklyCode"><code id="blocklyCodeNums">1<br/>2<br/>3</code><div class="codeNumLine"></div><code id="blocklyCode"></code></pre>
+        <pre class="blocklyCode"><code class="prettyprint linenums" id="blocklyCode"></code><button class="copy" onclick="myFunction()">Copy</button></pre>
     </main>
 </body>
 </html>

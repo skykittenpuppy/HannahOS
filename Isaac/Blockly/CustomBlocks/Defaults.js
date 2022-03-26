@@ -1,5 +1,12 @@
 CategoryColour = 0;
-
+Blockly.Blocks['text'] = {
+  colour: CategoryColour,
+  oldInit: Blockly.Blocks['text'].init,
+  init: function() {
+    this.oldInit();
+    this.setColour(this.colour);
+  }
+}
 Blockly.Blocks['logic_boolean'] = {
   colour: CategoryColour,
   oldInit: Blockly.Blocks['logic_boolean'].init,
@@ -46,6 +53,10 @@ BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
   "name": "Default",
   "colour": ""+CategoryColour,
   "contents": [
+    {
+      "kind": "block",
+      "type": "text",
+    },
     {
       "kind": "block",
       "type": "logic_boolean",

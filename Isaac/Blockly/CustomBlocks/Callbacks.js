@@ -6,7 +6,7 @@ Blockly.Blocks["MC_POST_GAME_STARTED"] = {
     this.appendDummyInput()
         .appendField("MC_POST_GAME_STARTED");
     this.appendValueInput("ModReference")
-        //.setCheck("ModReference")
+        .setCheck("ModReference")
         .appendField("ModReference");
     this.appendValueInput("IsContinued")
         .setCheck("Boolean")
@@ -42,6 +42,16 @@ Blockly.Blocks["MC_POST_PLAYER_INIT"] = {
     this.appendStatementInput("Function");
   }
 };
+Blockly.Lua['MC_POST_PLAYER_INIT'] = function(block) {
+  let mod = Blockly.Lua.valueToCode(block, "ModReference", 1000);
+  let PlayerVariant = Blockly.Lua.valueToCode(block, "PlayerVariant", 1000);
+  let internalCode = Blockly.Lua.statementToCode(block, "Function");
+  
+  let OptionalArgs = "";
+  if (PlayerVariant!="") {OptionalArgs = ", "+PlayerVariant;}
+  var code = mod+':AddCallback(MC_POST_GAME_STARTED, function(player)\n' + internalCode + 'end'+OptionalArgs+')\n';
+  return code;
+}
 
 BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
   "kind": "category",
@@ -54,7 +64,7 @@ BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
       "inputs": {
         "ModReference": {
           "shadow": {
-            "type": "ModReferenceGet",
+            "type": "RegisterMod",
           }
         },
       },
@@ -65,7 +75,7 @@ BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
       "inputs": {
         "ModReference": {
           "shadow": {
-            "type": "ModReferenceGet",
+            "type": "RegisterMod",
           }
         },
       },

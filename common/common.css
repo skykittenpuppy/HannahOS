@@ -80,7 +80,7 @@ html{
 }
 ::-webkit-scrollbar-thumb{
     background: var(--scrollbar);
-    border-radius: 5px;
+    border-radius: 0.5em;
 }
 ::-webkit-scrollbar-thumb:hover{
     background: var(--link);

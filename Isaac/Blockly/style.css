@@ -19,13 +19,13 @@ main{
     padding: 0;
     height: calc(100vh - 5rem);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
 }
 @media (max-width: 1200px){
     main{
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
     }
 }
 *{
@@ -34,25 +34,35 @@ main{
 #blocklyDiv{
     position: absolute;
 }
+
 .blocklyCode{
     margin: 0;
     background:var(--gray4);
     display: grid;
     grid-template-columns: 2em 2px 1fr;
+    grid-template-columns: 1fr;
+    /*height: calc(50vh - 2.5rem);*/
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
 }
-#blocklyCodeNums{
-    padding-top: 0.5em;
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-}
-.codeNumLine{
-    background: var(--gray3);
+.copy{
+    content: "";
+    position: absolute;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 3em;
+    width: 3em;
+    bottom: 2em;
+    right: 2em;
 }
 #blocklyCode{
     padding-top: 0.5em;
     padding-left: 0.5em;
     font-family: 'Courier New', Courier, monospace;
     white-space: initial;
+    /*height: calc(50vh - 5rem);*/
 }
 
 
@@ -134,4 +144,16 @@ main{
     background: var(--gray5) !important;
     z-index: 1;
 }
-.blocklyTrash{display: none;}
+
+.linenums{
+    background:var(--gray4);
+}
+.linenums li{
+    list-style-type: decimal-leading-zero !important;
+}
+.linenums li:nth-child(2n){
+    background: var(--gray5);
+}
+.linenums li:nth-child(2n)::marker{
+    background: var(--gray5);
+}
