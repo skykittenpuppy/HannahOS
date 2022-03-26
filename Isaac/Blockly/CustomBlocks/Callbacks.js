@@ -6,7 +6,7 @@ Blockly.Blocks["MC_POST_GAME_STARTED"] = {
     this.appendDummyInput()
         .appendField("MC_POST_GAME_STARTED");
     this.appendValueInput("ModReference")
-        .setCheck("ModReference")
+        //.setCheck("ModReference")
         .appendField("ModReference");
     this.appendValueInput("IsContinued")
         .setCheck("Boolean")
@@ -16,6 +16,16 @@ Blockly.Blocks["MC_POST_GAME_STARTED"] = {
     this.appendStatementInput("Function");
   }
 };
+Blockly.Lua['MC_POST_GAME_STARTED'] = function(block) {
+  let mod = Blockly.Lua.valueToCode(block, "ModReference", 1000);
+  let IsContinued = Blockly.Lua.valueToCode(block, "IsContinued", 1000);
+  let internalCode = Blockly.Lua.statementToCode(block, "Function");
+  
+  let OptionalArgs = "";
+  if (IsContinued!="") {OptionalArgs = "  if pre_cont ~= "+IsContinued+" then return end\n";}
+  var code = mod+':AddCallback(MC_POST_GAME_STARTED, function(pre_cont)\n' + OptionalArgs + internalCode + 'end)\n';
+  return code;
+}
 Blockly.Blocks["MC_POST_PLAYER_INIT"] = {
   colour: CategoryColour,
   init: function() {

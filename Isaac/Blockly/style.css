@@ -52,12 +52,14 @@ main{
     padding-top: 0.5em;
     padding-left: 0.5em;
     font-family: 'Courier New', Courier, monospace;
+    white-space: initial;
 }
 
 
 .blocklyToolboxDiv{
     background: var(--gray5);
     width: min(8rem);
+    z-index: 1;
 }
 .blocklyFlyout{
     z-index: 0;
@@ -130,6 +132,6 @@ main{
 }
 .blocklyMainWorkspaceScrollbar{
     background: var(--gray5) !important;
-    /*background: red !important;*/
+    z-index: 1;
 }
 .blocklyTrash{display: none;}

@@ -3,7 +3,7 @@ CategoryColour += 20;
 Blockly.Blocks['ModReferenceGet'] = {
   colour: CategoryColour,
   init: function() {  
-    this.appendDummyInput("ModReference")
+    this.appendDummyInput()
         .appendField("ModReference")
         .appendField(new Blockly.FieldVariable(
         "Mod", null, ["ModReference"], "ModReference"), "ModReference");
@@ -12,6 +12,12 @@ Blockly.Blocks['ModReferenceGet'] = {
     this.setColour(this.colour);
   }
 };
+Blockly.Lua['ModReferenceGet'] = function(block) {
+  var code = block.getFieldValue('ModReference') || "nil";
+  console.log(Blockly.Lua.nameDB_.getName(block.getFieldValue("ModReference")));
+  console.log(block.getFieldValue('ModReference'));
+  return [code, Blockly.Lua.ORDER_ATOMIC];
+}
 Blockly.Blocks["Color"] = {
   colour: CategoryColour,
   init: function() {
