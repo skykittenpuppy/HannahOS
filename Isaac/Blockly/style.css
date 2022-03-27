@@ -4,6 +4,9 @@ header{
     height: 5rem;
     clip-path: none;
 }
+body{
+    overflow-y: auto;
+}
 .navbar-nav{
     justify-content: space-between;
 }
@@ -39,7 +42,7 @@ main{
     margin: 0;
     background:var(--gray4);
     display: grid;
-    grid-template-columns: 2em 2px 1fr;
+    grid-template-columns: 2rem 2px 1fr;
     grid-template-columns: 1fr;
     /*height: calc(50vh - 2.5rem);*/
     height: 100%;
@@ -51,17 +54,27 @@ main{
     position: absolute;
     margin: 0;
     border: 0;
-    padding: 0;
-    height: 3em;
-    width: 3em;
-    bottom: 2em;
-    right: 2em;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 0 0 0.5rem var(--shadow);
+    height: 3rem;
+    width: 3rem;
+    bottom: 2rem;
+    right: 2rem;
+    color: var(--link);
+    background: var(--gray6);
 }
+.copy:hover{ background: var(--gray5); }
+.copy:active{ background: var(--gray4); }
+@font-face {
+    font-family: CascadiaCode;
+    src: url(../../common/fonts/CascadiaCode.woff2);
+}  
 #blocklyCode{
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    font-family: 'Courier New', Courier, monospace;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
     white-space: initial;
+    font-size: small;
     /*height: calc(50vh - 5rem);*/
 }
 
@@ -146,14 +159,47 @@ main{
 }
 
 .linenums{
-    background:var(--gray4);
+    background:#1e1e1e;
 }
 .linenums li{
     list-style-type: decimal-leading-zero !important;
+    list-style-type: decimal !important;
 }
-.linenums li:nth-child(2n){
-    background: var(--gray5);
+.linenums li:nth-child(n){
+    background: #1e1e1e;
+    counter-increment: level1;
+    font-family: CascadiaCode !important;
 }
-.linenums li:nth-child(2n)::marker{
-    background: var(--gray5);
+.linenums li:nth-child(n)::marker{
+    color: #2b91af !important;
+    content: counter(level1) "  ";
+}
+
+.kwd{
+    color: #569cd6 !important;
+    font-family: CascadiaCode !important;
+}
+.pln{
+    color: #dcdcdc !important;
+    font-family: CascadiaCode !important;
+}
+.pun{
+    color: #b4b4b4 !important;
+    font-family: CascadiaCode !important;
+}
+.str{
+    color: #d69d85 !important;
+    font-family: CascadiaCode !important;
+}
+.lit{
+    color: #b5cea8 !important;
+    font-family: CascadiaCode !important;
+}
+.typ{
+    color: #4ec9b0 !important;
+    font-family: CascadiaCode !important;
+}
+.com{
+    color: #57a64a !important;
+    font-family: CascadiaCode !important;
 }

@@ -39,13 +39,30 @@ Blockly.Blocks['variables_get'] = {
     this.setColour(this.colour);
   }
 };
-Blockly.Blocks['variables_set'] = {
+Blockly.Blocks['variables_set_global'] = {
   colour: CategoryColour,
   oldInit: Blockly.Blocks['variables_set'].init,
   init: function() {
+    this.appendDummyInput()
+        .appendField("global");
     this.oldInit();
     this.setColour(this.colour);
   }
+};
+Blockly.Lua['variables_set_global'] = Blockly.Lua['variables_set'];
+
+Blockly.Blocks['variables_set_local'] = {
+  colour: CategoryColour,
+  oldInit: Blockly.Blocks['variables_set'].init,
+  init: function() {
+    this.appendDummyInput()
+        .appendField("local");
+    this.oldInit();
+    this.setColour(this.colour);
+  }
+};
+Blockly.Lua['variables_set_local'] = function(block) {
+  return "local " + Blockly.Lua['variables_set'](block);
 };
 
 BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
@@ -67,7 +84,11 @@ BlocklyToolbox.contents[BlocklyToolbox.contents.length] = {
     },
     {
       "kind": "block",
-      "type": "variables_set",
+      "type": "variables_set_local",
+    },
+    {
+      "kind": "block",
+      "type": "variables_set_global",
     },
     {
       "kind": "block",
