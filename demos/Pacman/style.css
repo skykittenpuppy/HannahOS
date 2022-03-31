@@ -1,6 +1,6 @@
 main{
-    width: 100vw;
-    height: calc(100vh - 70px);
+    justify-self: center;
+    align-self: center;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -8,13 +8,13 @@ main{
 }
 canvas{ 
     aspect-ratio: 224 / 288;
-    height: 100%;
+    height: calc(90vh - 6em);
     image-rendering: pixelated;
 }
 button{
-    margin-top: 10px;
-    width: 100px;
-    height: 50px;
+    margin-top: 1em;
+    width: 5em;
+    height: 2em;
     font-size: x-large;
     color: cyan;
     background: red;

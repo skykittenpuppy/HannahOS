@@ -1,56 +1,21 @@
-
-body{
+main{
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+canvas{ 
+    width: 90vw;
+    height: calc(90vh - 6em);
     background: black;
 }
-main{
-    width:100vw;
-    height: calc(100vh - 70px);
-    border: 10px;
-}
-img{
-    padding: 10px;
-    filter: auto;
-    animation: bounce 10s linear infinite,
-    rainbow 3.5s linear infinite;
-    transform: translate(0, 0);
-}
-@keyframes bounce {
-    from{
-        transform: translate(
-            calc(0vw - 0%), 
-            calc(0vh - 0%)
-        );
-    }
-    25%{
-        transform: translate(
-            calc(100vw - 100%), 
-            calc(50vh - 35px - 50%)
-        );
-    }
-    50%{
-        transform: translate(
-            calc(0vw - 0%), 
-            calc(100vh - 70px - 100%)
-        );
-    }
-    75%{
-        transform: translate(
-            calc(100vw - 100%), 
-            calc(50vh - 35px - 50%)
-        );
-    }
-    to{
-        transform: translate(
-        calc(0vw - 0%), 
-        calc(0vh - 0%)
-    );
-    }
-}
-@keyframes rainbow {
-    from{
-        filter: hue-rotate(0deg);
-    }
-    to{
-        filter: hue-rotate(360deg);
-    }
+button{
+    margin-top: 1em;
+    width: 5em;
+    height: 2em;
+    font-size: x-large;
+    color: cyan;
+    background: red;
 }
