@@ -7,7 +7,6 @@ image.src = spriteSheetURL;
 var DVD;
 let speed = 0.25;
 let logoSpeed = 20;
-//speed = 1;
 
 image.onload = function () {
     canvas.width = document.documentElement.clientWidth*0.8 || 200;
@@ -25,6 +24,7 @@ function Start(){
             y: Math.random()*(canvas.height-128),
             dx: Math.random()*logoSpeed,
             dy: 0,
+            h: Math.random()*360,
     };
     DVD.dy = (logoSpeed-DVD.dx)-logoSpeed/2;
     DVD.dx = DVD.dx-logoSpeed/2;
@@ -32,7 +32,7 @@ function Start(){
 function DoFrame() {
     canvas.width = document.documentElement.clientWidth*0.8 || 200;
     canvas.height = document.documentElement.clientHeight*0.8 || 200;
-    console.log(canvas.width, canvas.height);
+    context.filter = "hue-rotate("+DVD.h+"deg)";
     context.drawImage(
         image,
         0, -2,
@@ -42,6 +42,7 @@ function DoFrame() {
     );
     DVD.x += DVD.dx*speed;
     DVD.y += DVD.dy*speed;
+    DVD.h += 2*speed;
     if (DVD.x + 256 > canvas.width || DVD.x < 0) {
         DVD.dx = -DVD.dx;
     }
