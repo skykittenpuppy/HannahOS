@@ -1,7 +1,7 @@
 header{
-    --top: var(--gray5);
-    --right: var(--gray4-5);
-    --left: var(--gray4);
+    --top: var(--header-bg-main);
+    --right: var(--header-bg-mid);
+    --left: var(--header-bg-high);
     --pos1: min(20vw, 5em);
     --pos2: calc(var(--pos1) / 8 * 14);
     background: linear-gradient(30deg, var(--top) 12%, transparent 12.5%, transparent 87%,  var(--top) 87.5%,  var(--top)),
@@ -13,51 +13,4 @@ header{
     background-color: var(--right);
     background-size: var(--pos1) var(--pos2);
     background-position: 50vw 0, 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2);
-}
-
-.thumbnail{
-    width: min(8em, 30vw);
-    height: min(8em, 30vw);
-}
-h2{
-    margin-top:0;
-    margin-bottom:0.25em;
-    font-size: min(1.25rem, 10vw);
-}
-p{
-    margin-bottom: 1rem;
-    font-size: min(1rem, 7vw);
-}
-
-.demo-list{
-    display: grid;
-    justify-items: center;
-    column-gap: 0.75em;
-    row-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    align-content: center;
-}
-.demo{
-    margin: 1rem;
-    padding: 1rem;
-    width: calc(100% - 2rem);
-    height: 8rem;
-    background: var(--focus-item);
-    border-radius: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    filter: drop-shadow(2px 5px 5px var(--shadow));
-}
-.demo span{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
-}
-.demo a{
-    text-decoration: underline;
-}
-.demo p{
-    margin: 0;
 }

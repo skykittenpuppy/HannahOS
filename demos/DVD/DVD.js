@@ -1,6 +1,6 @@
 var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
-var button = document.querySelector("button");
+var button = document.getElementById("resetButton");
 var spriteSheetURL = "demos/DVD/icon.png";
 var image = new Image();
 image.src = spriteSheetURL;

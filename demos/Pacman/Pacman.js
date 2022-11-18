@@ -1,6 +1,5 @@
 var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
-var button = document.querySelector("button");
 var spriteSheetURL = "demos/Pacman/Sprites2.png";
 var image = new Image();
 image.src = spriteSheetURL;
@@ -231,9 +230,6 @@ var pacman = { x: 13.5, y: 27, f: 0, state:"alive"};
 image.onload = function () {
     DoFrame();
     setInterval(DoFrame, 100);
-}
-button.onclick = function () {
-    DoFrame();
 }
 function DoFrame() {
     RenderMaze();
