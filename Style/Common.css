@@ -1,6 +1,6 @@
 /*Theme Colours*/
 :root{
-    --off-screen: -24em;
+    --off-screen: -24em;/*
     --gray0: #C9C9EE;
     --gray1: #9090b2;
     --gray2: #737394;
@@ -11,7 +11,7 @@
     --gray6: #140f20;
     --light-highlight: #4d4d8a;
     --dark-highlight: #4d4d8a;
-    --pastel: #D594CE;
+    --pastel: #D594CE;*/
 }/*
 .pastel{
     --gray0: #F4CCF0;
@@ -54,15 +54,29 @@
     --codeblock: var(--gray4);
 }*/
 .dark{
-    --bg: #565676;
-    --text: #C9C9EE;
-    --focus-item: #4d4d8a;
+    --bg: #4d4d8a;
+    --text: #ffffff;
+    --focus-item: #3a3a68;
+    --dropdown: #262645;
     --important: magenta;
-    --shadow: rgba(0,0,0,0.9);
-    --link: #3066BE;
+    --shadow: #000000;
+    --nav-item: 255,255,255;
+    --link: white;
     --header-bg-main: #221e32;
     --header-bg-mid: #2b293f;
     --header-bg-high: #333149;
+}
+.pastel{
+    --bg: lime;
+    --text: lime;
+    --focus-item: lime;
+    --dropdown: lime;
+    --important: lime;
+    --shadow: lime;
+    --link: lime;
+    --header-bg-main: lime;
+    --header-bg-mid: lime;
+    --header-bg-high: lime;
 }
 /*scrollbar*/
 html{
@@ -80,7 +94,7 @@ html{
     border-radius: 0.5em;
 }
 ::-webkit-scrollbar-thumb:hover{
-    background: var(--focus-item);
+    background: var(--header-bg-high);
 }
 /*General*/
 * {
@@ -128,14 +142,25 @@ header{
     align-items: center;
     justify-content: center;
     font-size: min(1rem, 5vw);
+
+    background-color: gray;
+    background-size:cover;
+    background-position: center;
 }
 @media (max-width: 800px) {
     header {flex-direction: column;}
 }
+.title{
+    backdrop-filter: contrast(0.75);
+    box-shadow: 0px 0px 20px var(--shadow);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
 header h1,
 header h2,
 header p{
-  filter: drop-shadow(0 0 0.25em var(--gray5));
+  text-shadow: 0 0 5px var(--shadow);
+  margin: 0;
 }
 main {
     padding: 1em;
@@ -148,8 +173,8 @@ main {
     left:0;
     height: 3.5em;
     width:100%;
-    backdrop-filter: blur(5px) contrast(0.8);
-    box-shadow: 0px 0px 10px var(--shadow);
+    backdrop-filter: blur(5px) contrast(0.75);
+    box-shadow: 0px 0px 20px var(--shadow);
     color: var(--text);
     font-weight: bold;
     z-index: 2;
@@ -172,10 +197,14 @@ main {
   height: 100%;
 }
 .nav-item{
-    width: 12vw;
+    aspect-ratio: 1/1;
+    width: 2.5rem;
     display: flex;
-    align-items: bottom;
+    align-items: center;
     justify-content: center;
+    background-color:  rgba(var(--nav-item), 0.1);
+    border-radius: 25%;
+    padding: 0.125rem;
 }
 .nav-link{
   color: var(--link);
@@ -183,8 +212,17 @@ main {
   text-decoration: inherit;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-size: 0;
+  width: 100%;
+  height: 100%;
+}
+.navbar:hover > .navbar-nav > .nav-item {
+    width: 4rem;
+}
+.navbar:hover > .navbar-nav > .nav-item:hover {
+    background-color: rgba(var(--nav-item), 0.2);
 }
 .navbar:hover > .navbar-nav > .nav-item > .nav-link{
     font-size: 1em;
@@ -245,16 +283,16 @@ main {
     padding: 0.25em;
 }
 .dropdown-item.theme-light svg{
-    background: var(--gray0);
-    color: var(--gray0);
+    background: #C9C9EE;
+    color: #C9C9EE;
 }
 .dropdown-item.theme-dark svg{
-    background: var(--gray5);
-    color: var(--gray5);
+    background: #131323;
+    color: #131323;
 }
 .dropdown-item.theme-pastel svg{
-    background: var(--pastel);
-    color: var(--pastel);
+    background: lime;
+    color: lime;
     border-radius: 25%;
 }
 .light .dropdown-item.theme-light svg{
@@ -294,8 +332,8 @@ main {
     row-gap: 1em;
     padding: 0.75em;
 
-    background: #353141;
-    box-shadow: 0px 0px 10px var(--shadow);
+    background: var(--dropdown);
+    box-shadow: 0px 0px 20px var(--shadow);
     overflow: hidden;
     z-index: -1;
 }
@@ -313,7 +351,7 @@ main {
     background: var(--focus-item);
     display: flex;
     justify-content: space-between;
-    filter: drop-shadow(2px 5px 5px var(--shadow));
+    filter: drop-shadow(0px 0px 5px var(--shadow));
     height: 2.5rem;
     overflow: hidden;
     border-radius: 0.5rem;

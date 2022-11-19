@@ -1,4 +1,4 @@
-header{
+/*header{
     --top: var(--header-bg-main);
     --right: var(--header-bg-mid);
     --left: var(--header-bg-high);
@@ -13,4 +13,7 @@ header{
     background-color: var(--right);
     background-size: var(--pos1) var(--pos2);
     background-position: 50vw 0, 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2);
+}*/
+header{
+    background-image: url(icons/BGNether.png);
 }

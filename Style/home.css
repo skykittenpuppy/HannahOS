@@ -1,24 +1,27 @@
+/*header{
+    --star: var(--header-bg-high);
+    --sky: var(--header-bg-main);
+    --bgSize: min(40vw, 10em);
+    --centerVal: calc(var(--bgSize) * 0.17);
+    background:
+    linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+    linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+    linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+    linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
+    linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.23 * var(--bgSize)),
+    linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.23 * var(--bgSize)),
+
+    linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+    linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+    linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+    linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
+    linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.73 * var(--bgSize)),
+    linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.73 * var(--bgSize));
+
+    background-color: var(--sky);
+    background-size: var(--bgSize) var(--bgSize);
+    flex-direction: column;
+}*/
 header{
-  --star: var(--header-bg-high);
-  --sky: var(--header-bg-main);
-  --bgSize: min(40vw, 10em);
-  --centerVal: calc(var(--bgSize) * 0.17);
-  background:
-  linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
-  linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
-  linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.43 * var(--bgSize)),
-  linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.43 * var(--bgSize)),
-  linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.7  * var(--bgSize))) calc(0.23 * var(--bgSize)),
-  linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.3  * var(--bgSize))) calc(0.23 * var(--bgSize)),
-  
-  linear-gradient(324deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
-  linear-gradient( 36deg, var(--sky )   4%, transparent   4%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
-  linear-gradient( 72deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.93 * var(--bgSize)),
-  linear-gradient(288deg, var(--star) 8.5%, transparent 8.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.93 * var(--bgSize)),
-  linear-gradient(216deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc(-0.2  * var(--bgSize))) calc(0.73 * var(--bgSize)),
-  linear-gradient(144deg, var(--star) 7.5%, transparent 7.5%) calc(50vw + var(--centerVal) + calc( 0.8  * var(--bgSize))) calc(0.73 * var(--bgSize));
-  
-  background-color: var(--sky);
-  background-size: var(--bgSize) var(--bgSize);
-  flex-direction: column;
+    background-image: url(icons/BGLush.png);
 }

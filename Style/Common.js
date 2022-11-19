@@ -25,22 +25,22 @@ navBar.innerHTML =
         <div tabindex="0" class="nav-link">
             <svg class="icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="adjust" class="svg-inline--fa fa-adjust fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"></path></svg>
             Theme
-            <ul class="dropdown offscreen" data-items="3">
+            <ul class="dropdown offscreen" data-items="2">
                 <li class="dropdown-item theme-light">
                     <div id="light">
                     <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
-                    Light</div>
+                    Light (unfinished)</div>
                 </li>
                 <li class="dropdown-item theme-dark">
                     <button id="dark">
                     <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
                     Dark</button>
-                </li>
-                <li class="dropdown-item theme-pastel">
+                </li>`+
+                /*<li class="dropdown-item theme-pastel">
                     <button id="pastel">
                     <svg class="icon-theme" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
-                    Pink</button>
-                </li>
+                    Debug (lime)</button>
+                </li>*/`
             </ul>
         </div>
     </li>
@@ -60,7 +60,7 @@ body.firstChild.before(navBar);
 //Theme Buttons
 const darkButton = document.getElementById("dark");
 const lightButton = document.getElementById("light");
-const pastelButton = document.getElementById("pastel");
+//const pastelButton = document.getElementById("pastel");
 
 let theme = "light";
 let pastel = false;
@@ -69,28 +69,22 @@ if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").match
     theme = "dark";
 }
 theme = localStorage.getItem("theme") || "dark";
-pastel = localStorage.getItem("pastelEnabled") || false;
-
-if (theme != "light") {theme = "dark"}
 
 body.classList.add(theme);
 localStorage.setItem("theme", theme);
-if (pastel) { body.classList.add("pastel");}
 
 darkButton.onclick = () => {
     body.classList.replace("light", "dark");
     localStorage.setItem("theme", "dark");
 };
-/*lightButton.onclick = () => {
+lightButton.onclick = () => {
     body.classList.replace("dark", "light");
     localStorage.setItem("theme", "light");
-};*/
+};/*
 pastelButton.onclick = () => {
     if (body.classList.contains("pastel")) {
         body.classList.remove("pastel");
-        localStorage.removeItem("pastelEnabled")
     } else {
         body.classList.add("pastel");
-        localStorage.setItem("pastelEnabled", true);
     }
-};
+};*/
