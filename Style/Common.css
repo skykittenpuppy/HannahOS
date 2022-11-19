@@ -380,7 +380,7 @@ main {
     opacity: 1;
     transition-delay: 0s;
 }
-@media (hover: none){
+@media (hover: none) and (pointer: coarse){
     .content-item{
         height: 8rem;
     }
