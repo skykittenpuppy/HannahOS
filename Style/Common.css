@@ -305,27 +305,48 @@ main {
 /*Content Items*/
 .content-list{
     display: grid;
-    justify-items: center;
-    column-gap: 0.75em;
-    row-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    align-content: center;
+    grid-template-columns: 1fr;
 }
 .content-item{
     padding: 1rem;
     width: calc(100% - 2rem);
-    height: 8rem;
     background: var(--focus-item);
-    border-radius: 25px;
     display: flex;
     justify-content: space-between;
     filter: drop-shadow(2px 5px 5px var(--shadow));
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    padding-bottom: 1.75rem;
+    margin-bottom: -0.75rem;
+}
+.content-list:not(:hover) .content-item:nth-child(1),
+.content-item:hover{
+    height: 8rem;
 }
 .content-item img{
-    width: min(8em, 30vw);
-    height: min(8em, 30vw);
+    height: 100%;
+    aspect-ratio: 1/1;
 }
 .content-item a{
-    height: 2em;
     text-decoration: underline;
+    height: 2.5em;
+}
+.content-item p{
+    opacity: 0;
+    transition: opacity 0s;
+    transition-delay: 0.2s;
+}
+.content-list:not(:hover) .content-item:nth-child(1) p,
+.content-item:hover p{
+    opacity: 1;
+    transition-delay: 0s;
+}
+@media (hover: none){
+    .content-item{
+        height: 8rem;
+    }
+    .content-item p{
+        opacity: 1;
+    }
 }
