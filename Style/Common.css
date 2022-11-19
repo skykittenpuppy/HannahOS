@@ -344,6 +344,7 @@ main {
 .content-list{
     display: grid;
     grid-template-columns: 1fr;
+    height: 23.5em;
 }
 .content-item{
     padding: 1rem;
@@ -358,6 +359,9 @@ main {
     padding-bottom: 1.75rem;
     margin-bottom: -0.75rem;
 }
+.content-item span{
+    width: 100%;
+}
 .content-list:not(:hover) .content-item:nth-child(1),
 .content-item:hover{
     height: 8rem;
@@ -366,9 +370,17 @@ main {
     height: 100%;
     aspect-ratio: 1/1;
 }
+.content-item .content-title{
+    display: grid;
+    grid-template-columns: 16em 50%;
+    gap: 0.5em;
+    height: 2.5em;
+    align-items: center;
+}
 .content-item a{
     text-decoration: underline;
     height: 2.5em;
+    margin: 0;
 }
 .content-item p{
     opacity: 0;
@@ -380,11 +392,22 @@ main {
     opacity: 1;
     transition-delay: 0s;
 }
-@media (hover: none) and (pointer: coarse){
+.content-item .short{   
+    opacity: 1;
+    transition: opacity 0.2s;
+    margin: 0;
+}
+.content-list:not(:hover) .content-item:nth-child(1) .short,
+.content-item:hover .short{
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+@media (hover: none) or (pointer: coarse){
     .content-item{
         height: 8rem;
     }
     .content-item p{
         opacity: 1;
+        transition-delay: 0s;
     }
 }
