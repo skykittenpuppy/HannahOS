@@ -2,75 +2,75 @@
 <html lang="en">
 <head>
     <base href="../../">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorials</title>
-    <meta property="og:site_name" content="Hannah's Website">
-    <meta property="og:url" content="https://hannah130405.github.io/">
-    <meta property="og:title" content="Tutorials">
-    <meta property="og:description" content="A website made by Hannah!">
-    <meta property="og:type" content="website">
-    <meta name="og:image" itemprop="image" content="common/icons/discEmbed.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tutorials on how to mod The Binding of Isaac: Repentance">
-    <meta name="theme-color" content="#565676">
-    <link rel="canonical" href="https://hannah130405.github.io/home">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&amp;display=swap">
+    <link rel="icon" href="Style/icons/favicon2.ico" />
 
-    <script defer src="common/common.js"></script>
-    <link rel="icon" href="common/icons/favicon2.ico" />
-    <link rel="stylesheet" href="common/common.css" />
-    <link rel="stylesheet" href="Isaac/tutorials/style.css" />
+    <script defer src="Style/Common.js"></script>
+    <link rel="stylesheet" href="Style/Common.css" />
+    <link rel="stylesheet" href="Style/tutorials.css" />
 </head>
 
-<body class="dark">
+<body>
     <header>
-        <img class="logo" src="Isaac/tutorials/Isaac.png" alt="Logo">
         <span class="title">
             <h1>Binding of Isaac: Repentance<br/>
                 Modding tutorials</h1>
+            <p>Warning! This page isn't complete, and probably looks ugly!</p>
         </span>
     </header>
     <main>
-        <ul class="tutorial-list" id="main-content">
-            <li class="tutorial">
+        <ul class="content-list" id="main-content" data-items="5">
+            <li class="content-item">
                 <span>
-                    <a href = "Isaac/tutorials/DebugConsole"><h2>The Debug Console</h2></a>
-                    <p>How to enable the Debug Console</p>
-                    <h5 class="no-lua">[No lua required!]</h5>
+                    <span class="content-title"><a href = "Isaac/tutorials/DebugConsole"><h2>The Debug Console</h2></a><p class="short">How to enable the Debug Console</p></span>
+                    <p>This first tutorial is a quick overview of how to enable the Debug Console.</p>
                 </span>
-                <img class="thumbnail no-pixel" src="Isaac/tutorials/DebugConsole/thumb.png" alt="">
+                <div class="thumbnail no-pixel">
+                    <img src="Isaac/tutorials/DebugConsole/thumb.png" alt="">
+                    <img src="Isaac/tutorials/no lua.png" alt="No lua required">
+                </div>
             </li>
-            <li class="tutorial">
+            <li class="content-item">
                 <span>
-                    <a href = "Isaac/tutorials/GettingStarted"><h2>Getting Started</h2></a>
-                    <p>Setting up a mod folder</p>
-                    <h5 class="no-lua">[No lua required!]</h5>
+                    <span class="content-title"><a href = "Isaac/tutorials/GettingStarted"><h2>Getting Started</h2></a><p class="short">Setting up the mod folder</p></span>
+                    <p>How to set up your folder to begin modding.</p>
                 </span>
-                <img class="thumbnail" src="Isaac/tutorials/GettingStarted/thumb.png" alt="">
+                <div class="thumbnail no-pixel">
+                    <img src="Isaac/tutorials/GettingStarted/thumb.png" alt="">
+                    <img src="Isaac/tutorials/no lua.png" alt="No lua required">
+                </div>
             </li>
-            <li class="tutorial">
+            <li class="content-item">
                 <span>
-                    <a href = "Isaac/tutorials/MakingItem"><h2>Adding a new item</h2></a>
-                    <p>Adding your first item to the game</p>
-                    <h5 class="no-lua">[No lua required!]</h5>
+                    <span class="content-title"><a href = "Isaac/tutorials/MakingItem"><h2>Adding a new item</h2></a><p class="short">Adding your first item</p></span>
+                    <p>How to add items to the game.</p>
                 </span>
-                <img class="thumbnail" src="Isaac/tutorials/MakingItem/thumb.png" alt="">
+                <div class="thumbnail no-pixel">
+                    <img src="Isaac/tutorials/MakingItem/thumb.png" alt="">
+                    <img src="Isaac/tutorials/no lua.png" alt="No lua required">
+                </div>
             </li>
-            <li class="tutorial">
+            <li class="content-item">
                 <span>
-                    <a href = "Isaac/tutorials/MakingChar"><h2>Making A New Character</h2></a>
-                    <p>Making a basic new character</p>
-                    <h5 class="no-lua">[No lua required!]</h5>
+                    <span class="content-title"><a href = "Isaac/tutorials/MakingChar"><h2>Making A New Character</h2></a><p class="short">Making a basic character</p></span>
+                    <p>Making your first basic character.</p>
                 </span>
-                <img class="thumbnail" src="Isaac/tutorials/MakingChar/thumb.png" alt="">
+                <div class="thumbnail no-pixel">
+                    <img src="Isaac/tutorials/MakingChar/thumb.png" alt="">
+                    <img src="Isaac/tutorials/no lua.png" alt="No lua required">
+                </div>
             </li>
-            <li class="tutorial">
+            <li class="content-item">
                 <span>
-                    <a href = "Isaac/tutorials/ModifyStats"><h2>Modifying Player Stats</h2></a>
-                    <p>Changing the character's stats in certain situations</p>
-                    <h5>[Lua required]</h5>
+                    <span class="content-title"><a href = "Isaac/tutorials/ModifyStats"><h2>Modifying Player Stats</h2></a><p class="short">Changing character stats</p></span>
+                    <p>How to change player stats with lua.</p>
                 </span>
-                <img class="thumbnail no-pixel" src="Isaac/tutorials/ModifyStats/thumb.png" alt="">
+                <div class="thumbnail no-pixel">
+                    <img src="Isaac/tutorials/ModifyStats/thumb.png" alt="">
+                    <img src="Isaac/tutorials/lua.png" alt="Lua required">
+                </div>
             </li>
         </ul>
     </main>

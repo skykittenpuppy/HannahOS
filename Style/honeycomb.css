@@ -1,6 +1,6 @@
 header{
-  --bg: var(--gray5);
-  --comb: var(--gray4);
+  --bg: var(--header-bg-main);
+  --comb: var(--header-bg-high);
   --width: min(12vw, 10em);
   --height: calc(var(--width) / 2 * 3);
   background:

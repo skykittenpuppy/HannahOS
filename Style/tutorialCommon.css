@@ -1,9 +1,7 @@
-*{
-    font-family: 'IBM Plex Sans', sans-serif;}
 header{
-    --thick: var(--gray4);
-    --thin: var(--gray4);
-    --bg: var(--gray5);
+    --thick: var(--header-bg-high);
+    --thin: var(--header-bg-high);
+    --bg: var(--header-bg-main);
     --bgSize: 5em;
     background: 
     linear-gradient( 0deg, var(--thick) 5%, transparent 5%),
@@ -17,8 +15,6 @@ header{
                      calc(var(--bgSize) / 5) calc(var(--bgSize) / 5);
     background-position: center;
 }
-
-
 h2 {
     margin-top: 0;
     margin-bottom: 5px;

@@ -15,5 +15,5 @@
     background-position: 50vw 0, 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2), 50vw 0, calc(50vw + var(--pos1) / 2) calc(var(--pos2) / 2);
 }*/
 header{
-    background-image: url(icons/BGNether.png);
+    background-image: url(icons/BGFlowers.png);
 }

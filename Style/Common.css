@@ -65,6 +65,9 @@
     --header-bg-main: #221e32;
     --header-bg-mid: #2b293f;
     --header-bg-high: #333149;
+    --scroll-back: #221e32;
+    --scroll-front: #2b293f;
+    --scroll-hover: #333149;
 }
 .pastel{
     --bg: lime;
@@ -86,15 +89,15 @@ html{
     width: 10px;
 }
 ::-webkit-scrollbar-track{
-    background: var(--header-bg-main);
+    background: var(--scroll-back);
     margin-block: -0.25em;
 }
 ::-webkit-scrollbar-thumb{
-    background: var(--header-bg-mid);
+    background: var(--scroll-front);
     border-radius: 0.5em;
 }
 ::-webkit-scrollbar-thumb:hover{
-    background: var(--header-bg-high);
+    background: var(--scroll-hover);
 }
 /*General*/
 * {
@@ -146,9 +149,6 @@ header{
     background-color: gray;
     background-size:cover;
     background-position: center;
-}
-@media (max-width: 800px) {
-    header {flex-direction: column;}
 }
 .title{
     backdrop-filter: contrast(0.75);
@@ -241,9 +241,6 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(var(--items), 1fr);
 }
-[data-items="1"] {--items: 1;}
-[data-items="2"] {--items: 2;}
-[data-items="3"] {--items: 3;}
 .has-dropdown:focus-within .dropdown{
     transform: translateY(0);
     pointer-events: auto;
@@ -261,7 +258,6 @@ main {
 .dropdown-item button {
     color: var(--link);
     background: transparent;
-    border: 0;
     text-decoration: inherit;
     display: flex;
     align-items: center;
@@ -271,16 +267,21 @@ main {
     font-weight: bold;
     color: var(--link);
 }
-/*Theme Icons*/
-.icon-theme{
+.icon-dropdown{
     width: 2em;
     height: 2em;
     color: var(--link);
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
     vertical-align: middle;
-    margin-right: 0.75em;
     padding: 0.25em;
+}
+.dropdown-name{
+    margin-left: 0.75em;
+}
+/*Theme Icons*/
+.theme-icon-bg{
+    border-radius: 50%;
+    border: 0.125em solid var(--link);
+    overflow: hidden;
 }
 .dropdown-item.theme-light svg{
     background: #C9C9EE;
@@ -344,7 +345,8 @@ main {
 .content-list{
     display: grid;
     grid-template-columns: 1fr;
-    height: 23.5em;
+    --items: 1;
+    height: calc(10em + calc(var(--items) - 1) * 4.5em);
 }
 .content-item{
     padding: 1rem;
@@ -366,15 +368,21 @@ main {
 .content-item:hover{
     height: 8rem;
 }
-.content-item img{
+.thumbnail{
     height: 100%;
     aspect-ratio: 1/1;
+}
+.thumbnail img{
+    height: calc(100% - 2.75em);
+    aspect-ratio: 1/1;
+    position: absolute;
 }
 .content-item .content-title{
     display: grid;
     grid-template-columns: 16em 50%;
     gap: 0.5em;
     align-items: center;
+    margin-bottom: 1.5em;
 }
 .content-item a{
     text-decoration: underline;
@@ -420,3 +428,9 @@ main {
         display: block;
     }
 }
+/*The Funny*/
+[data-items="1"] {--items: 1;}
+[data-items="2"] {--items: 2;}
+[data-items="3"] {--items: 3;}
+[data-items="4"] {--items: 4;}
+[data-items="5"] {--items: 5;}
