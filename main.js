@@ -58,6 +58,9 @@ const commands = [
 ];
 
 document.addEventListener("keyup", checkCommand);
+document.addEventListener("keydown", (e) => {
+	console.log(e.key);
+});
 
 function prepareCommand(){
 	consoleWrite("[guest@beegirl.gay "+getShortDir()+"]$ ");

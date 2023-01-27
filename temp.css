@@ -74,6 +74,7 @@ input{
 	padding: 0;
 	background: none;
 	outline: none;
+	width: auto;
 }
 
 /*Navbar*/
