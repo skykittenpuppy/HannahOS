@@ -75,6 +75,7 @@ function checkCommand(event, bypass = false){
 		});
 		if (!success) consoleWrite(bash+": "+args[0]+": command not found<br/>");
 		prepareCommand();
+		consoleInput.scrollIntoView();
 	}
 }
 function consoleWrite(text){
