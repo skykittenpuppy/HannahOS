@@ -92,13 +92,10 @@ function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
 }
 function cowSay(text){
-	//let splitText = text.match(/.{1,20}/g);
 	let splitText = [""];
 	let temp = 0;
 	text.split(" ").forEach(element => {
-		console.log((splitText[temp].length +1+ element.length));
 		if ((splitText[temp].length +1+ element.length) > 20){
-			console.log("over 20");
 			temp++;
 			splitText[temp] = element;
 		}
@@ -106,7 +103,7 @@ function cowSay(text){
 			splitText[temp] += (splitText[temp] == "" ? "" : " ") + element;
 		}
 	});
-	let width = splitText[0].length
+	let width = Math.max(...(splitText.map(el => el.length)));
 	let cowText = `<pre> `+" ".repeat(Math.max(0, 8-width))+"_".repeat(width);
 	if (splitText.length == 1) {
 		cowText += `
@@ -114,10 +111,10 @@ function cowSay(text){
 	}
 	else {
 		cowText += `
-/`+splitText[0]+`\\`;
+/`+splitText[0]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`\\`;
 		for (let i = 1; i < splitText.length-1; i++) {
 			cowText += `
-|`+splitText[i]+`|`;
+|`+splitText[i]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`|`;
 	  	}
 		  cowText += `
 \\`+splitText[splitText.length-1]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`/`;
