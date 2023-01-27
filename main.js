@@ -44,7 +44,7 @@ hamburgerButton.addEventListener("click", () => {
 const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
 	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
-	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")); }},
+	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
 	{command: "cd", function: (args) => {
 		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
 		else if (args[1].startsWith("/")) directory = args[1];
