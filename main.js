@@ -81,7 +81,7 @@ function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
 }
 function cowSay(text){
-	text = text == "" ? "   " : text;
+	if (text == "") text = `...`;
 	let splitText = [""];
 	let temp = 0;
 	text.split(" ").forEach(element => {

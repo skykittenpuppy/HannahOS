@@ -1,7 +1,7 @@
 html{
 	font-family: monospace;
 	font-size: large;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 body{
 	--lightBlue: #5bcffa;
