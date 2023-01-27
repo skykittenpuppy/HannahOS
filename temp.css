@@ -1,0 +1,199 @@
+html{
+	font-family: monospace;
+	font-size: large;
+	overflow: hidden;
+}
+body{
+	--lightBlue: #5bcffa;
+	--lightPink: #f5abb9;
+	--white: #ffffff;
+	background: var(--consoleColour01);
+	color: var(--consoleColour15);
+}
+.default{
+	--consoleColour01: #232627;
+	--consoleColour02: #7f8c8d;
+	--consoleColour03: #ed1515;
+	--consoleColour04: #c0392b;
+	--consoleColour05: #11d116;
+	--consoleColour06: #1cdc9a;
+	--consoleColour07: #f67400;
+	--consoleColour08: #fdbc4b;
+	--consoleColour09: #1d99f3;
+	--consoleColour10: #3daee9;
+	--consoleColour11: #9b59b6;
+	--consoleColour12: #8e44ad;
+	--consoleColour13: #1abc9c;
+	--consoleColour14: #16a085;
+	--consoleColour15: #fcfcfc;
+	--consoleColour16: #ffffff;
+}
+.other{
+	--consoleColour01: #46465c;
+	--consoleColour02: #634560;
+	--consoleColour03: #e95678;
+	--consoleColour04: #ec6a88;
+	--consoleColour05: #29d398;
+	--consoleColour06: #3fdaa4;
+	--consoleColour07: #fab795;
+	--consoleColour08: #fbc3a7;
+	--consoleColour09: #26bbd9;
+	--consoleColour10: #3fc6de;
+	--consoleColour11: #ee64ae;
+	--consoleColour12: #f075b7;
+	--consoleColour13: #59e3e3;
+	--consoleColour14: #6be6e6;
+	--consoleColour15: #fdf0ed;
+	--consoleColour16: #ffffff;
+}
+
+/*Neofetch*/
+.neofetch{
+	display: flex;
+}
+.neofetch img{
+	image-rendering: pixelated;
+	padding: 1ch;
+	width: 30ch;
+	aspect-ratio: 1/1;
+}
+.neofetch div{
+	padding-inline: 1ch;
+}
+.neofetch pre{
+	display: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+input{
+	font-family: inherit;
+	font-size: inherit;
+	color: var(--consoleColour15);
+	margin: 0;
+	border: none;
+	padding: 0;
+	background: none;
+	outline: none;
+}
+
+/*Navbar*/
+nav{
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	width: 4rem;
+	top: 0;
+	right: -5.5rem;
+	height: 100vh;
+	background: gray;
+	transition: 500ms;
+	border-radius: 0.5rem 0 0 0.5rem;
+}
+nav:has(#hamburger[aria-expanded="true"]){
+	right: 0;
+}
+nav div{
+	position: relative;
+	width: 4rem;
+	background: rgba(0,0,0,0.5);
+	aspect-ratio: 1/1;
+	stroke: white;
+	stroke-width: 0.5rem;
+	overflow: hidden;
+	border: none;
+	border-radius: 0.5rem;
+	right: 0;
+	transition: 500ms;
+}
+
+/* Hamburger */
+#hamburger{
+	margin-bottom: 1rem;
+}
+#hamburger[aria-expanded="false"]{
+	right: 5.5rem;
+}
+#hamburger svg{ 
+	transform-origin: center; 
+	transition: 500ms ease-out; 
+}
+#hamburger[aria-expanded="true"] svg{ 
+	rotate: 45deg; 
+}
+#hamburger path{
+	stroke-dashoffset:	0;
+	stroke-dasharray:	70 calc(0.5 * 20 * 3.1415)
+						35 0
+						35 calc(0.5 * 20 * 3.1415)
+						70 1000;
+	transition: 500ms ease-out;
+}
+#hamburger[aria-expanded="true"] path{
+	stroke-dashoffset:	calc(-70 + (0.5 * -20 * 3.1415));
+	stroke-dasharray:	35 0 
+						35 calc(105 + (0.5 * 20 * 3.1415) + (0.5 * 15 * 3.1415))
+						35 0
+						35 1000;
+}
+
+/*Colours*/
+.colour01{
+	color: var(--consoleColour01);
+}
+.colour02{
+	color: var(--consoleColour02);
+}
+.colour03{
+	color: var(--consoleColour03);
+}
+.colour04{
+	color: var(--consoleColour04);
+}
+.colour05{
+	color: var(--consoleColour05);
+}
+.colour06{
+	color: var(--consoleColour06);
+}
+.colour07{
+	color: var(--consoleColour07);
+}
+.colour08{
+	color: var(--consoleColour08);
+}
+.colour09{
+	color: var(--consoleColour09);
+}
+.colour10{
+	color: var(--consoleColour10);
+}
+.colour11{
+	color: var(--consoleColour11);
+}
+.colour12{
+	color: var(--consoleColour12);
+}
+.colour13{
+	color: var(--consoleColour13);
+}
+.colour14{
+	color: var(--consoleColour14);
+}
+.colour15{
+	color: var(--consoleColour15);
+}
+.colour16{
+	color: var(--consoleColour16);
+}
+.lightBlue{
+	color: var(--lightBlue);
+}
+.lightPink{
+	color: var(--lightPink);
+}
+.white{
+	color: var(--white);
+}

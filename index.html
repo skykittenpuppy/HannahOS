@@ -1,29 +1,44 @@
 <!DOCTYPE HTML>
-<!--Note: most of this html file was copied from https://github.com/wofsauge/IsaacDocs/-->
 <html lang="en-US">
 
 <head>
-    <base href="../">
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=../home">
-    <script type="text/javascript">
-        window.location.href = window.location.href.replace("index.html", "") + "home"
-    </script>
-    <title>Page Redirection</title>
-    <meta property="og:site_name" content="Hannah's Website">
-    <meta property="og:url" content="https://hannah130405.github.io/">
-    <meta property="og:title" content="Home">
-    <meta property="og:description" content="A website made by Hannah!">
-    <meta property="og:type" content="website">
-    <meta name="og:image" itemprop="image" content="common/icons/discEmbed.png">
-    <link rel="icon" href="common/icons/favicon2.ico" />
+    <title>Hi! I'm Hannah</title>
+    <link rel="icon" href="Resources/favicon.ico" />
+    <link rel="stylesheet" href="temp.css" />
+	<script defer src="main.js"></script> 
 </head>
 
-<body>
-    <!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
-    If you are not redirected automatically, follow this <a href='home'>link to get to the home page :D</a>.<br/>
-    Alternatively, use one of the following links to go directly to another page:
-    <a href="about">About</a>, <a href="demos">Demos</a>, <a href="tutorials">Tutorials</a>
+<body class="default">
+	<main>
+		<input id="consoleInput" spellcheck="false"/>
+	</main>
+	<nav>
+		<div tabindex="0" id="hamburger" aria-expanded="false">
+			<svg viewBox="0 0 100 100">
+				<path	fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m 15,30 h 70 a 1 1 180 0 1 0 20 h -70 a 1 1 180 0 0 0 20 h 70 a 1 1 180 0 1 0 15 h -35 v -70"/>
+			</svg>
+		</div>
+		<div tabindex="0" id="defaultTheme">
+			<svg viewBox="0 0 100 100">
+				<path	fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m 15,30 h 70 a 1 1 180 0 1 0 20 h -70 a 1 1 180 0 0 0 20 h 70 a 1 1 180 0 1 0 15 h -35 v -70"/>
+			</svg>
+		</div>
+		<div tabindex="0" id="otherTheme">
+			<svg viewBox="0 0 100 100">
+				<path	fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="m 15,30 h 70 a 1 1 180 0 1 0 20 h -70 a 1 1 180 0 0 0 20 h 70 a 1 1 180 0 1 0 15 h -35 v -70"/>
+			</svg>
+		</div>
+	</nav>
 </body>
 
 </html>
