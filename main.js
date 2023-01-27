@@ -45,6 +45,7 @@ const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
 	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
 	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
+	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")+"<br/>"); }},
 	{command: "cd", function: (args) => {
 		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
 		else if (args[1].startsWith("/")) directory = args[1];
@@ -58,15 +59,6 @@ const commands = [
 ];
 
 document.addEventListener("keyup", checkCommand);
-document.addEventListener("keyup", (e) => {
-	if (e.key == "Control") control = false;
-});
-document.addEventListener("keydown", (e) => {
-	if (e.key == "Control") control = true;
-	if (e.key == "a" && control){
-		console.log("ctrl a");
-	}
-});
 
 function prepareCommand(){
 	consoleWrite("[guest@beegirl.gay "+getShortDir()+"]$ ");
