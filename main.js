@@ -87,6 +87,7 @@ function consoleWrite(text){
 }
 function consoleClear(){
 	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
+	consoleInput = document.getElementById("consoleInput");
 }
 
 prepareCommand();
