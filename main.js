@@ -89,14 +89,14 @@ function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
 }
 function cowSay(text){
-` ____________
+return ` ____________
 < `+text+` >
  ------------
 		\   ^__^
 		 \  (oo)\_______
 			(__)\       )\/\
 				||----w |
-				||     ||`
+				||     ||`;
 }
 function consoleClear(){
 	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
