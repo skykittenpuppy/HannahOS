@@ -45,6 +45,7 @@ const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
 	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
 	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
+	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))+"<br/>"); }},
 	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")+"<br/>"); }},
 	{command: "cd", function: (args) => {
 		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
@@ -86,6 +87,16 @@ function checkCommand(event, bypass = false){
 }
 function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
+}
+function cowSay(text){
+` ____________
+< `+text+` >
+ ------------
+		\   ^__^
+		 \  (oo)\_______
+			(__)\       )\/\
+				||----w |
+				||     ||`
 }
 function consoleClear(){
 	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
