@@ -58,8 +58,14 @@ const commands = [
 ];
 
 document.addEventListener("keyup", checkCommand);
+document.addEventListener("keyup", (e) => {
+	if (e.key == "Control") control = false;
+});
 document.addEventListener("keydown", (e) => {
-	console.log(e.key);
+	if (e.key == "Control") control = true;
+	if (e.key == "a" && control){
+		console.log("ctrl a");
+	}
 });
 
 function prepareCommand(){
