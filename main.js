@@ -1,5 +1,4 @@
 //#region Console
-const hamburgerButton = document.getElementById("hamburger");
 let consoleInput = document.getElementById("consoleInput");
 const rootDirectory = "/";
 const homeDirectory = "/home/guest";
@@ -34,21 +33,11 @@ const transrights = `
 <span class="lightBlue">██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
 `;
 
-hamburgerButton.addEventListener("click", () => {
-	hamburgerButton.setAttribute("aria-expanded", 
-		hamburgerButton.getAttribute("aria-expanded") === "true" 
-		? "false"
-		: "true");
-});
-
 const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
 	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
 	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
-	{command: "cowsay", function: (args) => { 
-		if (args.length < 2) consoleWrite(bash+": cd: too few arguments<br/>")
-		consoleWrite(cowSay(args.slice(1).join(" "))); 
-	}},
+	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))); }},
 	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")+"<br/>"); }},
 	{command: "cd", function: (args) => {
 		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
@@ -92,6 +81,7 @@ function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
 }
 function cowSay(text){
+	text = text == "" ? "   " : text;
 	let splitText = [""];
 	let temp = 0;
 	text.split(" ").forEach(element => {
@@ -137,12 +127,20 @@ prepareCommand();
 consoleInput.value = "neofetch";
 document.activeElement = consoleInput;
 checkCommand(new KeyboardEvent(""), true);
-//#endregion
-//#region Themes
 
-//Theme Buttons
+//#endregion
+//#region Other
+
+const hamburgerButton = document.getElementById("hamburger");
 const defaultTheme = document.getElementById("defaultTheme");
 const otherTheme = document.getElementById("otherTheme");
+
+hamburgerButton.addEventListener("click", () => {
+	hamburgerButton.setAttribute("aria-expanded", 
+		hamburgerButton.getAttribute("aria-expanded") === "true" 
+		? "false"
+		: "true");
+});
 
 let theme = "default";
 theme = localStorage.getItem("colTheme") || "default";
