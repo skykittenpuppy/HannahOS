@@ -111,22 +111,22 @@ function cowSay(text){
 	}
 	else {
 		cowText += `
-/`+splitText[0]+" ".repeat(Math.max(0, width-splitText[0].length))+`\\`;
+/`+splitText[0]+" ".repeat(width-splitText[0].length)+`\\`;
 		for (let i = 1; i < splitText.length-1; i++) {
 			cowText += `
-|`+splitText[i]+" ".repeat(Math.max(0, width-splitText[i].length))+`|`;
+|`+splitText[i]+" ".repeat(width-splitText[i].length)+`|`;
 	  	}
 		  cowText += `
-\\`+splitText[splitText.length-1]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`/`;
+\\`+splitText[splitText.length-1]+" ".repeat(width-splitText[splitText.length-1].length)+`/`;
 	}
 	cowText += `
  `+" ".repeat(Math.max(0, 8-width))+"-".repeat(width);
 	return cowText+`
-        \\   ^__^
-         \\  (oo)\_______
-            (__)\\       )\\/\\
-                ||----w |
-                ||     ||</pre>`;
+        \\  ^__^
+         \\ (oo)\_______
+           (__)\\       )\\/\\
+               ||----w||
+               ||     ||</pre>`;
 }
 function consoleClear(){
 	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
