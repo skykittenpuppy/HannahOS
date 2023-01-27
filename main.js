@@ -50,6 +50,7 @@ const commands = [
 		else if (args[1].startsWith("~")) directory = homeDirectory+"/"+args[1].slice(1);
 		else directory += "/"+args[1];
 	}},
+	{command: "clear", function: (args) => { consoleClear(); }},
 	{command: "help", function: (args) => {commands.forEach(element => {
 		consoleWrite(element.command+" ");
 	}); consoleWrite("<br/>");}},
@@ -83,6 +84,9 @@ function checkCommand(event, bypass = false){
 }
 function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
+}
+function consoleClear(){
+	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
 }
 
 prepareCommand();
