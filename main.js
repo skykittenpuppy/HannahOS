@@ -95,7 +95,7 @@ function cowSay(text){
 	let splitText = [""];
 	let temp = 0;
 	text.split(" ").forEach(element => {
-		if ((splitText[temp].length +1+ element.length) > 20){
+		if ((splitText[temp].length +1+ element.length) > 30){
 			temp++;
 			splitText[temp] = element;
 		}
@@ -111,16 +111,16 @@ function cowSay(text){
 	}
 	else {
 		cowText += `
-/`+splitText[0]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`\\`;
+/`+splitText[0]+" ".repeat(Math.max(0, width-splitText[0].length))+`\\`;
 		for (let i = 1; i < splitText.length-1; i++) {
 			cowText += `
-|`+splitText[i]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`|`;
+|`+splitText[i]+" ".repeat(Math.max(0, width-splitText[i].length))+`|`;
 	  	}
 		  cowText += `
 \\`+splitText[splitText.length-1]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`/`;
 	}
 	cowText += `
- `+" ".repeat(Math.max(0, 8-width))+"-".repeat(splitText[0].length);
+ `+" ".repeat(Math.max(0, 8-width))+"-".repeat(width);
 	return cowText+`
         \\   ^__^
          \\  (oo)\_______
