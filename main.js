@@ -45,7 +45,10 @@ const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
 	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
 	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
-	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))+"<br/>"); }},
+	{command: "cowsay", function: (args) => { 
+		if (args.length < 2) consoleWrite(bash+": cd: too few arguments<br/>")
+		consoleWrite(cowSay(args.slice(1).join(" "))); 
+	}},
 	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")+"<br/>"); }},
 	{command: "cd", function: (args) => {
 		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
@@ -80,7 +83,7 @@ function checkCommand(event, bypass = false){
 		commands.every(element => {
 			if (args[0] == element.command) { element.function(args); success = true; return false; }
 			return true;
-		})
+		});
 		if (!success) consoleWrite(bash+": "+args[0]+": command not found<br/>");
 		prepareCommand();
 	}
@@ -89,14 +92,44 @@ function consoleWrite(text){
 	consoleInput.insertAdjacentHTML("beforeBegin", text);
 }
 function cowSay(text){
-return ` ____________
-< `+text+` >
- ------------
-		\   ^__^
-		 \  (oo)\_______
-			(__)\       )\/\
-				||----w |
-				||     ||`;
+	//let splitText = text.match(/.{1,20}/g);
+	let splitText = [""];
+	let temp = 0;
+	text.split(" ").forEach(element => {
+		console.log((splitText[temp].length +1+ element.length));
+		if ((splitText[temp].length +1+ element.length) > 20){
+			console.log("over 20");
+			temp++;
+			splitText[temp] = element;
+		}
+		else {
+			splitText[temp] += (splitText[temp] == "" ? "" : " ") + element;
+		}
+	});
+	let width = splitText[0].length
+	let cowText = `<pre> `+" ".repeat(Math.max(0, 8-width))+"_".repeat(width);
+	if (splitText.length == 1) {
+		cowText += `
+`+" ".repeat(Math.max(0, 8-width))+`&lt`+splitText[0]+`>`;
+	}
+	else {
+		cowText += `
+/`+splitText[0]+`\\`;
+		for (let i = 1; i < splitText.length-1; i++) {
+			cowText += `
+|`+splitText[i]+`|`;
+	  	}
+		  cowText += `
+\\`+splitText[splitText.length-1]+" ".repeat(Math.max(0, width-splitText[splitText.length-1].length))+`/`;
+	}
+	cowText += `
+ `+" ".repeat(Math.max(0, 8-width))+"-".repeat(splitText[0].length);
+	return cowText+`
+        \\   ^__^
+         \\  (oo)\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||</pre>`;
 }
 function consoleClear(){
 	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';

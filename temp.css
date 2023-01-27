@@ -60,7 +60,7 @@ body{
 .neofetch div{
 	padding-inline: 1ch;
 }
-.neofetch pre{
+pre{
 	display: inherit;
 	font-family: inherit;
 	margin: 0;
