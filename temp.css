@@ -55,6 +55,18 @@ body{
 	background-color: var(--consoleColour01);
 	box-shadow: 0 0 1em black;
 }
+::-webkit-resizer {
+	display: none;
+}
+.window::after{
+	content: "⇲";
+	font-size: large;
+	color: var(--consoleColour02);
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	right: 3px;
+}
 .windowHeader{
 	position: absolute;
 	top: 0;
