@@ -360,8 +360,8 @@ function RenderPacman() {
     );
 }
 function ComputeGhosts() {
-    console.log(frame);
-    console.log( Math.floor((frame%400)/200) == 0 ? "chase" : "scatter");
+    //console.log(frame);
+    //console.log( Math.floor((frame%400)/200) == 0 ? "chase" : "scatter");
     for (const c of ghosts) {
         let o = [];
         if (c.state == "sleep") continue;

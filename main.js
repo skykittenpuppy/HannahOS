@@ -203,10 +203,10 @@ function newWindow(title, width, height){
 			windows[movingWindow].mouseY = e.clientY;
 
 			windows[movingWindow].window.style.top = 
-			Math.max(0, windows[movingWindow].window.offsetTop - difY)+"px";
+			Math.max(0, Math.min(document.documentElement.clientHeight - windows[movingWindow].window.offsetHeight, windows[movingWindow].window.offsetTop - difY))+"px";
 
 			windows[movingWindow].window.style.left = 
-			Math.max(0, windows[movingWindow].window.offsetLeft - difX)+"px";
+			Math.max(0, Math.min(document.documentElement.clientWidth - windows[movingWindow].window.offsetWidth, windows[movingWindow].window.offsetLeft - difX))+"px";
 		}
 		document.onmouseup = (e) => {
 			document.onmousemove = null;

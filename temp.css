@@ -53,7 +53,8 @@ body{
 	min-height: 7.5em;
 	min-width: 7.5em;
 	background-color: var(--consoleColour01);
-	border: 1px solid var(--consoleColour16);
+	/*border: 1px solid var(--consoleColour16);*/
+	box-shadow: 0 0 1em black;
 }
 .windowHeader{
 	position: absolute;
@@ -78,7 +79,7 @@ body{
 	z-index: 6;
 	background-color: var(--consoleColour03);
 	stroke-width: 0.5rem;
-	stroke: var(--consoleColour01);
+	stroke: var(--consoleColour16);
 	text-align: center;
 	overflow: hidden;
 }
