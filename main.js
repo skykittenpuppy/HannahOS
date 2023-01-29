@@ -104,6 +104,7 @@ const commands = [
 	{command: "clear", function: (args) => { consoleClear(); }},
 
 	{command: "window", function: (args) => { newWindow(args[1] || "", args[2] || 600, args[3] || 600) }},
+	{command: "pacman", function: (args) => { startPacman(args[1] || 0) }},
 ];
 
 function consoleClear(){
@@ -145,26 +146,28 @@ const windows = [];
 let movingWindow = 0;
 
 function newWindow(title, width, height){
-	let startX = document.documentElement.clientWidth/2 - width/2;
-	let startY = document.documentElement.clientHeight/2 - height/2;
-
-	let window = document.createElement("div");
-	document.body.appendChild(window);
-	window.classList = "window";
-	window.style = "top:"+startY+"px; left:"+startX+"px; width:"+width+"px; height: "+height+"px;";
-
-	let content = document.createElement("div");
-	window.appendChild(content);
-	content.classList = "windowContent";
-	windows.push({	"window":window,
-					"content":content,
+	let window = {	"index": 0,
+					"mainDiv":null,
+					"content":null,
 					"callback":null,
 					"mouseX":0,
 					"mouseY":0,
-	});	
+					"onClose": () => {},
+	};
+	let startX = document.documentElement.clientWidth/2 - width/2;
+	let startY = document.documentElement.clientHeight/2 - height/2;
+
+	let mainDiv = document.createElement("div");
+	document.body.appendChild(mainDiv);
+	mainDiv.classList = "window";
+	mainDiv.style = "top:"+startY+"px; left:"+startX+"px; width:"+width+"px; height: "+height+"px;";
+
+	let content = document.createElement("div");
+	mainDiv.appendChild(content);
+	content.classList = "windowContent";
 
 	let close = document.createElement("div");
-	window.appendChild(close);
+	mainDiv.appendChild(close);
 	close.classList = "windowClose";
 	close.innerHTML = `
 	<svg viewBox="0 0 100 100">
@@ -174,27 +177,26 @@ function newWindow(title, width, height){
 				d="m 15,50 h 70 v 35 h -35 v -70"/>
 	</svg>`;
 	close.onmousedown = () =>{
-		for (let i = 0; i < windows.length; i++){
-			if (windows[i].window == window) windows.splice(i,1);
-			window.remove();
-		}
+		window.onClose();
+		windows.splice(window.index, 1);
+		mainDiv.remove();
 	}
 
 	let header = document.createElement("div");
-	window.appendChild(header);
+	mainDiv.appendChild(header);
 	header.classList = "windowHeader";
 	header.innerHTML = title;
 	header.onmousedown = (e) =>{
-		e = e || window.event;
+		e = e || mainDiv.event;
 		e.preventDefault();
 		for (let i = 0; i < windows.length; i++){
-			if (windows[i].window == window) movingWindow = i;
+			if (windows[i].mainDiv == mainDiv) movingWindow = i;
 		}
 		windows[movingWindow].mouseX = e.clientX;
 		windows[movingWindow].mouseY = e.clientY;
 
 		document.onmousemove = (e) => {
-			e = e || window.event;
+			e = e || mainDiv.event;
 			e.preventDefault();
 
 			let difX = windows[movingWindow].mouseX - e.clientX;
@@ -202,17 +204,20 @@ function newWindow(title, width, height){
 			windows[movingWindow].mouseX = e.clientX;
 			windows[movingWindow].mouseY = e.clientY;
 
-			windows[movingWindow].window.style.top = 
-			Math.max(0, Math.min(document.documentElement.clientHeight - windows[movingWindow].window.offsetHeight, windows[movingWindow].window.offsetTop - difY))+"px";
+			windows[movingWindow].mainDiv.style.top = 
+			Math.max(0, Math.min(document.documentElement.clientHeight - windows[movingWindow].mainDiv.offsetHeight, windows[movingWindow].mainDiv.offsetTop - difY))+"px";
 
-			windows[movingWindow].window.style.left = 
-			Math.max(0, Math.min(document.documentElement.clientWidth - windows[movingWindow].window.offsetWidth, windows[movingWindow].window.offsetLeft - difX))+"px";
+			windows[movingWindow].mainDiv.style.left = 
+			Math.max(0, Math.min(document.documentElement.clientWidth - windows[movingWindow].mainDiv.offsetWidth, windows[movingWindow].mainDiv.offsetLeft - difX))+"px";
 		}
 		document.onmouseup = (e) => {
 			document.onmousemove = null;
 		}
 	}
-	return content;
+	window.mainDiv = mainDiv;
+	window.content = content;
+	window.index = windows.push(window)-1;
+	return window;
 }
 //#endregion
 //#region Other
