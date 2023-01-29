@@ -44,6 +44,65 @@ body{
 	--consoleColour16: #ffffff;
 }
 
+/*Windows*/
+.window{
+	resize: both;
+	overflow: auto;
+	position: absolute;
+	z-index: 4;
+	min-height: 7.5em;
+	min-width: 7.5em;
+	background-color: var(--consoleColour01);
+	border: 1px solid var(--consoleColour16);
+}
+.windowHeader{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1.5em;
+	justify-content: space-between;
+	cursor: move;
+	z-index: 5;
+	background-color: var(--consoleColour09);
+	color: var(--consoleColour01);
+	padding-inline-start: 0.5ch;
+}
+.windowClose{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 1.5em;
+	width: 1.5em;
+	cursor: pointer;
+	z-index: 6;
+	background-color: var(--consoleColour03);
+	stroke-width: 0.5rem;
+	stroke: var(--consoleColour01);
+	text-align: center;
+	overflow: hidden;
+}
+.windowClose svg{
+	transform-origin: center; 
+	rotate: 45deg;
+	stroke-dasharray: 70 70 70;
+}
+.windowContent{
+	padding-block-start: 1.5em;
+	height: calc(100% - 1.5em);
+	width: 100%;
+}
+.pacman{
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.pacman canvas{
+	image-rendering: pixelated;
+	aspect-ratio: 224/288;
+	height: 100%;
+}
 /*Console*/
 #console{
 	display: flex;
@@ -96,6 +155,7 @@ input{
 /*Navbar*/
 nav{
 	position: fixed;
+	z-index: 9;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

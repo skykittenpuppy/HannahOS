@@ -102,6 +102,8 @@ const commands = [
 	}},
 	{command: "help", function: (args) => { let output = ""; commands.forEach(element => { output+= element.command+" "; }); consoleWrite(output);}},
 	{command: "clear", function: (args) => { consoleClear(); }},
+
+	{command: "window", function: (args) => { newWindow(args[1] || "", args[2] || 600, args[3] || 600) }},
 ];
 
 function consoleClear(){
@@ -137,6 +139,81 @@ prepareCommand();
 consoleInput.value = "neofetch";
 checkCommand(new KeyboardEvent(""), true);
 
+//#endregion
+//#region Windows
+const windows = [];
+let movingWindow = 0;
+
+function newWindow(title, width, height){
+	let startX = document.documentElement.clientWidth/2 - width/2;
+	let startY = document.documentElement.clientHeight/2 - height/2;
+
+	let window = document.createElement("div");
+	document.body.appendChild(window);
+	window.classList = "window";
+	window.style = "top:"+startY+"px; left:"+startX+"px; width:"+width+"px; height: "+height+"px;";
+
+	let content = document.createElement("div");
+	window.appendChild(content);
+	content.classList = "windowContent";
+	windows.push({	"window":window,
+					"content":content,
+					"callback":null,
+					"mouseX":0,
+					"mouseY":0,
+	});	
+
+	let close = document.createElement("div");
+	window.appendChild(close);
+	close.classList = "windowClose";
+	close.innerHTML = `
+	<svg viewBox="0 0 100 100">
+		<path	fill="none"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				d="m 15,50 h 70 v 35 h -35 v -70"/>
+	</svg>`;
+	close.onmousedown = () =>{
+		for (let i = 0; i < windows.length; i++){
+			if (windows[i].window == window) windows.splice(i,1);
+			window.remove();
+		}
+	}
+
+	let header = document.createElement("div");
+	window.appendChild(header);
+	header.classList = "windowHeader";
+	header.innerHTML = title;
+	header.onmousedown = (e) =>{
+		e = e || window.event;
+		e.preventDefault();
+		for (let i = 0; i < windows.length; i++){
+			if (windows[i].window == window) movingWindow = i;
+		}
+		windows[movingWindow].mouseX = e.clientX;
+		windows[movingWindow].mouseY = e.clientY;
+
+		document.onmousemove = (e) => {
+			e = e || window.event;
+			e.preventDefault();
+
+			let difX = windows[movingWindow].mouseX - e.clientX;
+			let difY = windows[movingWindow].mouseY - e.clientY;
+			windows[movingWindow].mouseX = e.clientX;
+			windows[movingWindow].mouseY = e.clientY;
+
+			windows[movingWindow].window.style.top = 
+			Math.max(0, windows[movingWindow].window.offsetTop - difY)+"px";
+
+			windows[movingWindow].window.style.left = 
+			Math.max(0, windows[movingWindow].window.offsetLeft - difX)+"px";
+		}
+		document.onmouseup = (e) => {
+			document.onmousemove = null;
+		}
+	}
+	return content;
+}
 //#endregion
 //#region Other
 const hamburgerButton = document.getElementById("hamburger");
