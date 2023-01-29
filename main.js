@@ -1,86 +1,37 @@
 //#region Console
-let consoleInput = document.getElementById("consoleInput");
+document.addEventListener("keyup", checkCommand);
+const myConsole = document.getElementById("console");
+const input = `<input id="consoleInput" spellcheck="false"/>`;
+let consoleInput;
+let directory = "/home/guest";
+//#region Constants
 const rootDirectory = "/";
 const homeDirectory = "/home/guest";
-let directory = "/home/guest";
-const bash = "bash";
-const neofetchInfo = `
-<div class="neofetch">
-	<img src="Resources/icon.png"/>
-	<div>
-		<span class="colour04">Hannah</span>@<span class="colour04">beegirl.gay</span><br/>
-		------------------<br/>
-		<span class="colour11">OS</span>: EndeavourOS Linux x86_64<br/>
-		<span class="colour11">Name</span>: Hannah Hadfield<br/>
-		<span class="colour11">LGTBQI+</span>: Gynoromantic, Pansexual, Polyamorous,<br/>
-		<pre>         Transgender, Plushgender, Beegender</pre>
-		<span class="colour11">Pronouns</span>: It/Its, They/Them, She/Her<br/>
-		<span class="colour11">Hobbies</span>: , , <br/>
-		<span class="colour11">Placeholder</span>: <br/>
-		<span class="colour11">Placeholder</span>: <br/>
-		<span class="colour11">Placeholder</span>: <br/>
-		<br/>
-		<span class="colour01">███</span><span class="colour03">███</span><span class="colour05">███</span><span class="colour07">███</span><span class="colour09">███</span><span class="colour11">███</span><span class="colour13">███</span><span class="colour15">███</span><br/>
-		<span class="colour02">███</span><span class="colour04">███</span><span class="colour06">███</span><span class="colour08">███</span><span class="colour10">███</span><span class="colour12">███</span><span class="colour14">███</span><span class="colour16">███</span><br/>
-	</div>
-</div>
-`;
-const transrights = `
-<span class="lightBlue">██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
-<span class="lightPink">██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
-<span class="white"    >██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
-<span class="lightPink">██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
-<span class="lightBlue">██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span></br>
-`;
-
-const commands = [
-	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo); }},
-	{command: "transrights", function: (args) => { consoleWrite(transrights); }},
-	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")+"<br/>"); }},
-	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))); }},
-	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")+"<br/>"); }},
-	{command: "cd", function: (args) => {
-		if (args.length > 2) consoleWrite(bash+": cd: too many arguments<br/>")
-		else if (args[1].startsWith("/")) directory = args[1];
-		else if (args[1].startsWith("~")) directory = homeDirectory+"/"+args[1].slice(1);
-		else directory += "/"+args[1];
-	}},
-	{command: "clear", function: (args) => { consoleClear(); }},
-	{command: "help", function: (args) => {commands.forEach(element => {
-		consoleWrite(element.command+" ");
-	}); consoleWrite("<br/>");}},
-];
-
-document.addEventListener("keyup", checkCommand);
-
-function prepareCommand(){
-	consoleWrite("[guest@beegirl.gay "+getShortDir()+"]$ ");
-	consoleInput.value = "";
-}
 function getShortDir(){
 	if (directory == rootDirectory) return "/";
 	if (directory == homeDirectory) return "~";
 	const arr = directory.split("/");
 	return arr[arr.length-1];
 }
-
-function checkCommand(event, bypass = false){
-	if (((event.key === "Enter" && consoleInput === document.activeElement) || bypass) && consoleInput.value != ""){
-		consoleWrite(consoleInput.value+"<br/>");
-		let args = consoleInput.value.split(" ");
-		let success = false;
-		commands.every(element => {
-			if (args[0] == element.command) { element.function(args); success = true; return false; }
-			return true;
-		});
-		if (!success) consoleWrite(bash+": "+args[0]+": command not found<br/>");
-		prepareCommand();
-		consoleInput.scrollIntoView();
-	}
-}
-function consoleWrite(text){
-	consoleInput.insertAdjacentHTML("beforeBegin", text);
-}
+const bash = "bash";
+const neofetchInfo = `
+<img src="Resources/icon.png"/>
+<div>
+	<span class="nowrap"><span class="colour04">Hannah</span>@<span class="colour04">beegirl.gay</span><br/></span>
+	<span class="nowrap">------------------<br/></span>
+	<span class="nowrap"><span class="colour11">OS</span>: EndeavourOS Linux x86_64<br/></span>
+	<span class="nowrap"><span class="colour11">Name</span>: Hannah Hadfield<br/></span>
+	<span class="nowrap"><pre><span class="colour11">LGBTQI+</span>: <img class="icon" src="Resources/GynoR.png"/>Gynoromantic, <img class="icon" src="Resources/PanS.png"/>Pansexual,   <img class="icon" src="Resources/PolyA.png"/>Polyamorous,</pre><br/></span>
+	<span class="nowrap"><pre>         <img class="icon" src="Resources/TransG.png"/>Transgender,  <img class="icon" src="Resources/PlushG.png"/>Plushgender, <img class="icon" src="Resources/BeeG.png"/>Beegender</pre><br/></span>
+	<span class="nowrap"><span class="colour11">Pronouns</span>: It/Its, They/Them, She/Her<br/></span>
+	<span class="nowrap"><span class="colour11">Hobbies</span>: C# Programming, Bad Ukulele, <br/></span>
+	<span class="nowrap"><span class="colour11">Placeholder</span>: <br/></span>
+	<span class="nowrap"><span class="colour11">Placeholder</span>: <br/></span>
+	<span class="nowrap"><span class="colour11">Idols</span>: Maia Arson Crimew, <br/></span>
+	<span class="nowrap"><br/></span>
+	<span class="nowrap"><span class="colour01">███</span><span class="colour03">███</span><span class="colour05">███</span><span class="colour07">███</span><span class="colour09">███</span><span class="colour11">███</span><span class="colour13">███</span><span class="colour15">███</span><br/></span>
+	<span class="nowrap"><span class="colour02">███</span><span class="colour04">███</span><span class="colour06">███</span><span class="colour08">███</span><span class="colour10">███</span><span class="colour12">███</span><span class="colour14">███</span><span class="colour16">███</span><br/></span>
+</div>`;
 function cowSay(text){
 	if (text == "") text = `...`;
 	let splitText = [""];
@@ -119,43 +70,98 @@ function cowSay(text){
                ||----w||
                ||     ||</pre>`;
 }
+//#endregion
+
+const commands = [
+	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo, "neofetch"); }},
+	{command: "transrights", function: (args) => { 
+		let re = args.slice(1).join(" ")+" "; 
+		if (re.trim() == "") re = "█";
+		consoleWrite(`	<span class="other colour14 nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="other colour12 nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="other colour16 nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="other colour12 nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="other colour14 nowrap">`+re.repeat(1000)+`</span></br>`, "nowrap"); 
+	}},
+	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")); }},
+	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))); }},
+	{command: "rev", function: (args) => { consoleWrite(args.slice(1).join(" ").split("").reverse().join("")); }},
+	{command: "theme", function: (args) => {
+		if (args.length < 2) {
+			consoleWrite(themes.join(" "));
+		}
+		else if (!setTheme(args.slice(1).join(" "))) {
+			consoleWrite(bash+": theme: theme not found");
+		}
+	}},
+	{command: "cd", function: (args) => {
+		if (args.length > 2) { consoleWrite(bash+": cd: too many arguments<br/>"); return; }
+		if (args[1].startsWith("/")) { directory = args[1]; return; }
+		if (args[1].startsWith("~")) { directory = homeDirectory; args[1] = args[1].slice(1); }
+		if (args[1] != "") { directory += "/"+args[1]; }
+	}},
+	{command: "help", function: (args) => { let output = ""; commands.forEach(element => { output+= element.command+" "; }); consoleWrite(output);}},
+	{command: "clear", function: (args) => { consoleClear(); }},
+];
+
 function consoleClear(){
-	consoleInput.parentElement.innerHTML = '<input id="consoleInput" spellcheck="false"/>';
+	myConsole.innerHTML = "";
+}
+function consoleWrite(text, className = ""){
+	myConsole.innerHTML += "<span"+(className == "" ? "" : ` class="`+className+`"`)+">"+text+"</span>";
+}
+function prepareCommand(){
+	consoleWrite("[guest@beegirl.gay "+getShortDir()+"]$ "+input);
 	consoleInput = document.getElementById("consoleInput");
+	consoleInput.focus();
+	consoleInput.scrollIntoView();
+}
+
+function checkCommand(event, bypass = false){
+	if ((bypass || (event.key === "Enter" && consoleInput === document.activeElement)) && consoleInput.value != ""){
+		let command = consoleInput.value;
+		consoleInput.insertAdjacentHTML("beforeBegin", command);
+		consoleInput.remove();
+		let args = command.split(" ");
+		let success = false;
+		commands.every(element => {
+			if (args[0] == element.command) { element.function(args); success = true; return false; }
+			return true;
+		});
+		if (!success) consoleWrite(bash+": "+args[0]+": command not found");
+		prepareCommand();
+	}
 }
 
 prepareCommand();
 consoleInput.value = "neofetch";
-document.activeElement = consoleInput;
 checkCommand(new KeyboardEvent(""), true);
 
 //#endregion
 //#region Other
-
 const hamburgerButton = document.getElementById("hamburger");
-const defaultTheme = document.getElementById("defaultTheme");
-const otherTheme = document.getElementById("otherTheme");
 
 hamburgerButton.addEventListener("click", () => {
 	hamburgerButton.setAttribute("aria-expanded", 
-		hamburgerButton.getAttribute("aria-expanded") === "true" 
+		hamburgerButton.getAttribute("aria-expanded") == "true" 
 		? "false"
-		: "true");
+		: "true"
+	);
 });
 
-let theme = "default";
-theme = localStorage.getItem("colTheme") || "default";
+const defaultTheme = document.getElementById("defaultTheme");
+const otherTheme = document.getElementById("otherTheme");
+const themes = ["default", "other"];
 
-document.body.className = theme;
-localStorage.setItem("colTheme", theme);
+setTheme(localStorage.getItem("colTheme") || "default");
 
-defaultTheme.onclick = () => {
-	document.body.className = "default";
-	localStorage.setItem("colTheme", "default");
+defaultTheme.onclick = () => { setTheme("default") }
+otherTheme.onclick = () => { setTheme("other") }
+
+function setTheme(theme){
+	if (!themes.includes(theme)) return false;
+	document.body.className = theme;
+	localStorage.setItem("colTheme", theme);
+	return true;
 }
-otherTheme.onclick = () => {
-	document.body.className = "other";
-	localStorage.setItem("colTheme", "other");
-}
-
 //#endregion

@@ -1,14 +1,11 @@
 html{
 	font-family: monospace;
-	font-size: large;
 	overflow-x: hidden;
 }
 body{
-	--lightBlue: #5bcffa;
-	--lightPink: #f5abb9;
-	--white: #ffffff;
 	background: var(--consoleColour01);
 	color: var(--consoleColour15);
+	margin: 0.5rem 0 0 0.5rem;
 }
 .default{
 	--consoleColour01: #232627;
@@ -47,34 +44,53 @@ body{
 	--consoleColour16: #ffffff;
 }
 
-/*Neofetch*/
+/*Console*/
+#console{
+	display: flex;
+	flex-direction: column;
+}
+#console span{
+	word-break: break-all;
+}
+#console .nowrap{
+	white-space: nowrap;
+}
 .neofetch{
 	display: flex;
 }
 .neofetch img{
 	image-rendering: pixelated;
-	padding: 1ch;
-	width: 30ch;
+	padding: 1ch 2ch 1ch 1ch;
+	height: 30ch;
 	aspect-ratio: 1/1;
 }
-.neofetch div{
-	padding-inline: 1ch;
+.neofetch .icon{
+	position: relative;
+	padding: 0;
+	padding-inline-end: 0.5ch;
+	top: 2px;
+	width: 1em;
+	height: 1em;
 }
 pre{
 	display: inherit;
 	font-family: inherit;
-	margin: 0;
+	margin: inherit;
 }
 input{
 	font-family: inherit;
+	background: inherit;
 	font-size: inherit;
-	color: var(--consoleColour15);
-	margin: 0;
-	border: none;
-	padding: 0;
-	background: none;
-	outline: none;
-	width: auto;
+	padding: inherit;
+	border: inherit;
+	color: inherit;
+	outline: 0;
+	width: 100%;
+}
+#console span:has(input){
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1ch;
 }
 
 /*Navbar*/
@@ -88,10 +104,11 @@ nav{
 	width: 4rem;
 	top: 0;
 	right: -5.5rem;
-	height: 100vh;
-	background: gray;
-	transition: 500ms;
-	border-radius: 0.5rem 0 0 0.5rem;
+	height: calc(100% - 1rem);
+	background: var(--consoleColour01);
+	transition: right 500ms;
+	border-radius: 1rem 0 0 1rem;
+	filter: brightness(1.5);
 }
 nav:has(#hamburger[aria-expanded="true"]){
 	right: 0;
@@ -99,20 +116,41 @@ nav:has(#hamburger[aria-expanded="true"]){
 nav div{
 	position: relative;
 	width: 4rem;
-	background: rgba(0,0,0,0.5);
+	background: var(--consoleColour02);
+	stroke: var(--consoleColour16);
 	aspect-ratio: 1/1;
-	stroke: white;
 	stroke-width: 0.5rem;
 	overflow: hidden;
 	border: none;
 	border-radius: 0.5rem;
 	right: 0;
-	transition: 500ms;
+	transition: filter 500ms;
+	filter: brightness(calc(2 / 3));
+}
+nav div:hover{
+	filter: brightness(0.8);
+}
+nav hr{
+	margin: 0;
+	border-radius: 1rem;
+	background: var(--consoleColour16);
+	border: var(--consoleColour16) solid 0.125rem;
+	width: calc(100% - 0.5rem);
+}
+.theme{
+	font-size: 0.6em;
+	background: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	filter: brightness(1);
 }
 
 /* Hamburger */
 #hamburger{
-	margin-bottom: 1rem;
+	transition: filter 500ms,
+				right 500ms;
 }
 #hamburger[aria-expanded="false"]{
 	right: 5.5rem;
@@ -188,13 +226,4 @@ nav div{
 }
 .colour16{
 	color: var(--consoleColour16);
-}
-.lightBlue{
-	color: var(--lightBlue);
-}
-.lightPink{
-	color: var(--lightPink);
-}
-.white{
-	color: var(--white);
 }
