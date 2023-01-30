@@ -1,9 +1,22 @@
 //#region Console
-document.addEventListener("keyup", checkCommand);
 const myConsole = document.getElementById("console");
 const input = `<input id="consoleInput" spellcheck="false"/>`;
 let consoleInput;
 let directory = "/home/guest";
+let commandHistory = [];
+if (localStorage.getItem("commandHistory")) commandHistory = JSON.parse(localStorage.getItem("commandHistory"));
+const commandHistLen = 20;
+let commandHistDep = 0;
+let storeComm = "";
+function pushHistory(command){
+	commandHistory.push(command);
+	//console.log(commandHistory);
+	if(commandHistory.length > commandHistLen) 
+		commandHistory = commandHistory.slice(commandHistory.length-commandHistLen, commandHistory.length);
+	//console.log(commandHistory);
+	localStorage.setItem("commandHistory", JSON.stringify(commandHistory));
+}
+
 //#region Constants
 const rootDirectory = "/";
 const homeDirectory = "/home/guest";
@@ -120,9 +133,26 @@ function prepareCommand(){
 	consoleInput.scrollIntoView();
 }
 
-function checkCommand(event, bypass = false){
-	if ((bypass || (event.key === "Enter" && consoleInput === document.activeElement)) && consoleInput.value != ""){
+document.addEventListener("keyup", (event) => {
+	if (consoleInput != document.activeElement) return;
+	if (event.key == "Enter") checkCommand();
+	else if (event.key == "ArrowUp") {
+		if (commandHistory.length == 0) return;
+		if (commandHistDep == 0) storeComm = consoleInput.value;
+		commandHistDep = Math.min(commandHistDep+1, commandHistory.length);
+		consoleInput.value = commandHistory[commandHistory.length-commandHistDep]
+	}
+	else if (event.key == "ArrowDown") {
+		consoleInput.value = storeComm;
+		commandHistDep = Math.max(commandHistDep-1, 0);
+		if (commandHistDep != 0) consoleInput.value = commandHistory[commandHistory.length-commandHistDep]
+	}
+});
+function checkCommand(auto = false){
+	if (consoleInput.value != ""){
 		let command = consoleInput.value;
+		if (!auto) pushHistory(command);
+		commandHistDep = 0;
 		consoleInput.insertAdjacentHTML("beforeBegin", command);
 		consoleInput.remove();
 		let args = command.split(" ");
@@ -138,7 +168,7 @@ function checkCommand(event, bypass = false){
 
 prepareCommand();
 consoleInput.value = "neofetch";
-checkCommand(new KeyboardEvent(""), true);
+checkCommand(true);
 
 //#endregion
 //#region Windows

@@ -210,6 +210,9 @@ function ComputeGhost(context, frame, ghosts, i, pacman, curMaze) {
 				b = m;
 			}
 		}
+		c.x = (c.x + b.x + 28) % 28;
+		c.y = c.y + b.y;
+		c.facing = b.f;
 		context.beginPath();
 		context.moveTo((c.x+0.5) * renderScale, (c.y+0.5) * renderScale);
 		context.lineTo((t.x+0.5) * renderScale, (t.y+0.5) * renderScale);
@@ -225,9 +228,6 @@ function ComputeGhost(context, frame, ghosts, i, pacman, curMaze) {
 			context.stroke();
 		}
 		context.globalAlpha = 1;
-		c.x = (c.x + b.x + 28) % 28;
-		c.y = c.y + b.y;
-		c.facing = b.f;
 	//}
 }
 function GetGhostTarget(ghosts, ii, pacman) {
@@ -328,10 +328,10 @@ function startPacman(mazeNum){
 		frame++;
 		RenderMaze(context, curMaze);
 		RenderPellets(context, frame, curPellets);
-		RenderPacman(context, frame, pacman);
 		for (let i = 0; i < ghosts.length; i++){
-			RenderGhost(context, frame, ghosts[i]);
 			if (go) ComputeGhost(context, frame, ghosts, i, pacman, curMaze);
+			RenderGhost(context, frame, ghosts[i]);
 		}
+		RenderPacman(context, frame, pacman);
 	}
 }
