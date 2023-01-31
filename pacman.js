@@ -40,11 +40,8 @@ const mazes = [
 			[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00],
 			[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00],
 		], 
-		redX:    13.5, redY:    15,
-		pinkX:   13.5, pinkY:   18,
-		blueX:   11.5, blueY:   18,
-		orangeX: 15.5, orangeY: 18,
-		pacX:    13.5, pacY:    27,
+		ghostX: 13.5, ghostY: 18,
+		pacX:   13.5, pacY:   27,
 	},
 ];
 const pellets = [
@@ -150,7 +147,7 @@ function RenderGhost(context, frame, ghost) {
 		else p.x = p.x + c.facing * 32;
 		if (c.state == "eaten") p.y = 80;
 		else p.x = p.x + (frame % 2) * 16;
-		if (c.state == "frightened" && frame-powerTime > 100) p.x = p.x + Math.floor(frame / 2) % 2 * 32;
+		if (c.state == "frightened" && c.timer <= 50) p.x = p.x + Math.floor(frame / 2) % 2 * 32;
 		context.drawImage(image, p.x, p.y, 8, 8, (c.x-0.5)*renderScale, (c.y-0.5)*renderScale, renderScale, renderScale);
 		context.drawImage(image, p.x + 8, p.y, 8, 8, (c.x+0.5)*renderScale, (c.y-0.5)*renderScale, renderScale, renderScale);
 		context.drawImage(image, p.x, p.y + 8, 8, 8, (c.x-0.5)*renderScale, (c.y+0.5)*renderScale, renderScale, renderScale);
@@ -158,77 +155,102 @@ function RenderGhost(context, frame, ghost) {
 }
 function ComputeGhost(context, frame, ghosts, i, pacman, curMaze) {
 	let c = ghosts[i];
-		let o = [];
-		if (c.state == "sleep") return;
-		if (c.state == "chase" || c.state == "scatter"){
-			c.state = Math.floor((frame%400)/200) == 0 ? "chase" : "scatter";
+	let o = [];
+	let b = { x: 0, y: 0, f: c.facing, d: 10000000 };
+	let checkDirs = true;
+	if (c.state == "sleep") {
+		if (c.y == mazes[curMaze].ghostY - 0.5) c.facing = 2;
+		else if (c.y == mazes[curMaze].ghostY + 0.5) c.facing = 0;
+
+		if (c.facing == 0) c.y -= 0.5;
+		else if (c.facing == 2) c.y += 0.5;
+		return;
+	}
+	else if (c.x == mazes[curMaze].ghostX && c.y == mazes[curMaze].ghostY - 3) {
+		c.state = "chase";
+		o[3] = { x:  0.5, y: 0, f: 3 };
+		o[1] = { x: -0.5, y: 0, f: 1 };
+		checkDirs = false;
+	}
+	else if (c.state == "leave") {
+		c.y == mazes[curMaze].ghostY;
+
+		if (c.x > mazes[curMaze].ghostX) { c.x -= 0.5; c.facing = 1; }
+		else if (c.x < mazes[curMaze].ghostX) { c.x += 0.5; c.facing = 3; }
+		else if (c.x = mazes[curMaze].ghostX) { c.y -= 0.5; c.facing = 0; }
+		return;
+	}
+	else if (c.state == "eaten" && 
+				c.x >= mazes[curMaze].ghostX-0.5 && c.x <= mazes[curMaze].ghostX+0.5 && 
+				c.y >= mazes[curMaze].ghostY - 3 && c.y <= mazes[curMaze].ghostY) {
+		c.facing = 2;
+		c.x = 13.5;
+		c.y += 0.5;
+		if (c.y == 18) {
+			c.state = "leave";
 		}
-		if (c.state == "frightened"){
-			if (c.x == pacman.x && c.y == pacman.y) c.state = "eaten";
-			//if (frame-powerTime > 150) c.state = "chase";
-		}
-		/*if (c.state == "eaten" && (mazes[curMaze].tiles[c.y + 1][Math.floor(c.x)] == 31 || c.x == 13.5)) {
-			c.facing = 2;
-			c.y = c.y + 1;
-			c.x = 13.5;
-			if (c.y == 18) c.state = "chase";
-			return;
-		}*/
-		else if (c.x == 13.5) {
-			c.x = 14;
-			/*c.facing = 0;
-			if (mazes[curMaze].tiles[c.y + 1][Math.floor(c.x)] == 31) {
-				c.x = 14;
-				o[3] = { x: 0, y: 0, f: 3 };
-				o[1] = { x: -1, y: 0, f: 1 };
-			}
-			c.y = c.y - 1;*/
-		}
-		else {
-			//c.state = "eaten";
-			for (let d = 0; d < 4; d++) {
-				if (((c.facing + 2) % 4) == d) continue;
-				let m = { x: 0, y: 0, f: d };
-				if (d == 0) m.y = -1;
-				else if (d == 1) m.x = -1;
-				else if (d == 2) m.y = 1;
-				else if (d == 3) m.x = 1;
-				const w = mazes[curMaze].tiles[c.y + m.y][c.x + m.x]
-				if (!(w == 0 || w == 16 || w == undefined || (w == 31 && c.state == "eaten"))) continue;
-				if (m.y == -1 && w == 16) continue;
-				o[d] = m;
-			}
-		}
-		const t = GetGhostTarget(ghosts, i, pacman);
-		let b = { x: 0, y: 0, f: c.facing, d: 10000000 };
+		return;
+	}
+
+	if (c.state == "chase" || c.state == "scatter"){
+		c.state = Math.floor((frame%400)/200) == 0 ? "chase" : "scatter";
+	}
+	else if (c.state == "frightened"){
+		if (c.x == pacman.x && c.y == pacman.y) c.state = "eaten";
+		if (c.timer <= 0) { c.state = "chase"; }
+	}
+
+	const t = GetGhostTarget(ghosts, i, pacman);
+	if (checkDirs){
 		for (let d = 0; d < 4; d++) {
-			if (o[d] == undefined) continue;
-			m = o[d];
-			m.d = (c.x + m.x - t.x) * (c.x + m.x - t.x) + (c.y + m.y - t.y) * (c.y + m.y - t.y);
-			if (c.state == "frightened") m.d = Math.random() * 100;
-			if (m.d < b.d) {
-				b = m;
-			}
+			if (((c.facing + 2) % 4) == d) continue;
+			let m = { x: 0, y: 0, f: d };
+			if (d == 0) m.y = -1;
+			else if (d == 1) m.x = -1;
+			else if (d == 2) m.y = 1;
+			else if (d == 3) m.x = 1;
+			const w = mazes[curMaze].tiles[c.y + m.y][c.x + m.x]
+			if (!(w == 0 || w == 16 || w == undefined || (w == 31 && c.state == "eaten"))) continue;
+			if (m.y == -1 && w == 16) continue;
+			o[d] = m;
 		}
-		c.x = (c.x + b.x + 28) % 28;
-		c.y = c.y + b.y;
-		c.facing = b.f;
+	}
+	for (let d = 0; d < 4; d++) {
+		if (o[d] == undefined) continue;
+		m = o[d];
+		m.d = (c.x + m.x - t.x) * (c.x + m.x - t.x) + (c.y + m.y - t.y) * (c.y + m.y - t.y);
+		if (c.state == "frightened") m.d = Math.random() * 100;
+		if (m.d < b.d) {
+			b = m;
+		}
+	}
+	c.x = (c.x + b.x + 28) % 28;
+	c.y = c.y + b.y;
+	c.facing = b.f;
+	c.timer = Math.max(0, c.timer-1);
+	context.lineWidth = 0.25*renderScale;
+	context.strokeStyle = c.colour;
+	context.lineCap = "round";
+	context.globalAlpha = 0.5;
+	context.beginPath();
+	context.moveTo((c.x+0.5) * renderScale, (c.y+0.5) * renderScale);
+	context.lineTo((t.x+0.5) * renderScale, (t.y+0.5) * renderScale);
+	context.stroke();
+	/*context.beginPath();
+	context.moveTo((c.x+0.5) * renderScale, (c.y+0.5) * renderScale);
+	context.lineTo((c.x+0.5+b.x*5) * renderScale, (c.y+0.5+b.y*5) * renderScale);
+	context.stroke();*/
+	if (c.colour == orange) {
 		context.beginPath();
-		context.moveTo((c.x+0.5) * renderScale, (c.y+0.5) * renderScale);
-		context.lineTo((t.x+0.5) * renderScale, (t.y+0.5) * renderScale);
-		context.lineWidth = 0.25*renderScale;
-		context.strokeStyle = c.colour;
-		context.lineCap = "round";
-		context.globalAlpha = 0.5;
+		context.arc((pacman.x+0.5) * renderScale, (pacman.y+0.5) * renderScale, 8*renderScale, 0, 2 * Math.PI);
+		context.globalAlpha = 0.25;
 		context.stroke();
-		if (c.colour == orange) {
-			context.beginPath();
-			context.arc((pacman.x+0.5) * renderScale, (pacman.y+0.5) * renderScale, 8*renderScale, 0, 2 * Math.PI);
-			context.globalAlpha = 0.25;
-			context.stroke();
-		}
-		context.globalAlpha = 1;
-	//}
+	}
+	context.globalAlpha = 1;
+	if (c.state == "frightened"){
+		if (c.x == pacman.x && c.y == pacman.y) c.state = "eaten";
+		if (c.timer <= 0) { c.state = "chase"; }
+	}
 }
 function GetGhostTarget(ghosts, ii, pacman) {
 	let c = ghosts[ii];
@@ -285,6 +307,39 @@ function GetGhostTarget(ghosts, ii, pacman) {
 	}
 	return target;
 }
+function ComputePacman(pacman, curMaze, curPellets, ghosts){
+	if (pacman.facing == 0) { 
+		let move = -1;
+		let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.y += move; } 
+	}
+	else if (pacman.facing == 2) { 
+		let move = 1;
+		let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.y += move; } 
+	}
+	else if (pacman.facing == 1) { 
+		let move = -1;
+		if (pacman.x % 1 != 0) move = -0.5;
+		let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.x = (pacman.x + move + 28) % 28; } 
+	}
+	else if (pacman.facing == 3) { 
+		let move = 1;
+		if (pacman.x % 1 != 0) move = 0.5;
+		let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.x = (pacman.x + move + 28) % 28; } 
+	}
+	if (curPellets[pacman.y][pacman.x] == 3) {
+		for (let ghost of ghosts){
+			if (ghost.state != "sleep" && ghost.state != "leave") {
+				ghost.state = "frightened";
+				ghost.timer = 150;
+			}
+		}
+	}
+	curPellets[pacman.y][pacman.x] = 0;
+}
 
 function startPacman(mazeNum){
 	let window = newWindow("Pacman", 460, 580);
@@ -314,17 +369,52 @@ function startPacman(mazeNum){
 		curMaze = Math.min(0, Math.max(mazes.length-1, mazeNum));
 		curPellets = pellets[curMaze];
 		ghosts = [
-			{ colour: red, x: mazes[curMaze].redX,    y: mazes[curMaze].redY,    facing: 1, state: "chase" },
-			{ colour: pink, x: mazes[curMaze].pinkX,   y: mazes[curMaze].pinkY,   facing: 2, state: "sleep" },
-			{ colour: blue, x: mazes[curMaze].blueX,   y: mazes[curMaze].blueY,   facing: 0, state: "sleep" },
-			{ colour: orange, x: mazes[curMaze].orangeX, y: mazes[curMaze].orangeY, facing: 0, state: "sleep" },
+			{ colour: red,    x: mazes[curMaze].ghostX,     y: mazes[curMaze].ghostY - 3, facing: 1, state: "leave", timer: 0 },
+			{ colour: pink,   x: mazes[curMaze].ghostX,     y: mazes[curMaze].ghostY,     facing: 2, state: "sleep", timer: 0 },
+			{ colour: blue,   x: mazes[curMaze].ghostX - 2, y: mazes[curMaze].ghostY,     facing: 0, state: "sleep", timer: 0 },
+			{ colour: orange, x: mazes[curMaze].ghostX + 2, y: mazes[curMaze].ghostY,     facing: 0, state: "sleep", timer: 0 },
 		];
 		pacman = { x: mazes[curMaze].pacX,    y: mazes[curMaze].pacY,    facing: 1, state: "alive" };
 		go = false;
-		window.content.onmousedown = () => { go = true; }
+		window.content.onmousedown = () => { 
+			go = true; 
+			frame = 0; 
+			window.content.onmousedown = null; 
+		}
+		document.onkeydown = (event) => {
+			/*if (event.key == "Enter"){
+				for (let ghost of ghosts){
+					ghost.state = "eaten";
+				}
+			}*/
+			if (!go) return;
+			if (event.key == "w") { 
+				let move = -1;
+				let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
+				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 0;  } 
+			}
+			else if (event.key == "s") { 
+				let move = 1;
+				let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
+				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 2;  } 
+			}
+			else if (event.key == "a") { 
+				let move = -1;
+				let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
+				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 1;  } 
+			}
+			else if (event.key == "d") { 
+				let move = 1;
+				let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
+				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 3;  } 
+			}
+		}
 		DoFrame();
 	}
 	function DoFrame() {
+		if (frame == 20) ghosts[1].state = "leave";
+		if (frame == 60) ghosts[2].state = "leave";
+		if (frame == 100) ghosts[3].state = "leave";
 		frame++;
 		RenderMaze(context, curMaze);
 		RenderPellets(context, frame, curPellets);
@@ -332,6 +422,7 @@ function startPacman(mazeNum){
 			if (go) ComputeGhost(context, frame, ghosts, i, pacman, curMaze);
 			RenderGhost(context, frame, ghosts[i]);
 		}
+		if (go) ComputePacman(pacman, curMaze, curPellets, ghosts);
 		RenderPacman(context, frame, pacman);
 	}
 }
