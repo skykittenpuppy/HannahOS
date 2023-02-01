@@ -1,0 +1,103 @@
+:root{
+	--text: var(--consoleColour16);
+	--back: var(--consoleColour01);
+}
+.default{
+	--consoleColour01: #232627;
+	--consoleColour02: #7f8c8d;
+	--consoleColour03: #ed1515;
+	--consoleColour04: #c0392b;
+	--consoleColour05: #11d116;
+	--consoleColour06: #1cdc9a;
+	--consoleColour07: #f67400;
+	--consoleColour08: #fdbc4b;
+	--consoleColour09: #1d99f3;
+	--consoleColour10: #3daee9;
+	--consoleColour11: #9b59b6;
+	--consoleColour12: #8e44ad;
+	--consoleColour13: #1abc9c;
+	--consoleColour14: #16a085;
+	--consoleColour15: #fcfcfc;
+	--consoleColour16: #ffffff;
+}
+.other{
+	--consoleColour01: #46465c;
+	--consoleColour02: #634560;
+	--consoleColour03: #e95678;
+	--consoleColour04: #ec6a88;
+	--consoleColour05: #29d398;
+	--consoleColour06: #3fdaa4;
+	--consoleColour07: #fab795;
+	--consoleColour08: #fbc3a7;
+	--consoleColour09: #26bbd9;
+	--consoleColour10: #3fc6de;
+	--consoleColour11: #ee64ae;
+	--consoleColour12: #f075b7;
+	--consoleColour13: #59e3e3;
+	--consoleColour14: #6be6e6;
+	--consoleColour15: #fdf0ed;
+	--consoleColour16: #ffffff;
+}
+
+.tBlue{
+	--text: #5bcffa;
+}
+.tPink{
+	--text: #f5abb9;
+}
+.tWhite{
+	--text: #ffffff;
+}
+
+.palette{
+	--back: transparent;
+}
+
+.colour01{
+	--text: var(--consoleColour01);
+}
+.colour02{
+	--text: var(--consoleColour02);
+}
+.colour03{
+	--text: var(--consoleColour03);
+}
+.colour04{
+	--text: var(--consoleColour04);
+}
+.colour05{
+	--text: var(--consoleColour05);
+}
+.colour06{
+	--text: var(--consoleColour06);
+}
+.colour07{
+	--text: var(--consoleColour07);
+}
+.colour08{
+	--text: var(--consoleColour08);
+}
+.colour09{
+	--text: var(--consoleColour09);
+}
+.colour10{
+	--text: var(--consoleColour10);
+}
+.colour11{
+	--text: var(--consoleColour11);
+}
+.colour12{
+	--text: var(--consoleColour12);
+}
+.colour13{
+	--text: var(--consoleColour13);
+}
+.colour14{
+	--text: var(--consoleColour14);
+}
+.colour15{
+	--text: var(--consoleColour15);
+}
+.colour16{
+	--text: var(--consoleColour16);
+}

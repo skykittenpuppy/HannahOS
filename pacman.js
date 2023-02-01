@@ -308,37 +308,76 @@ function GetGhostTarget(ghosts, ii, pacman) {
 	return target;
 }
 function ComputePacman(pacman, curMaze, curPellets, ghosts){
-	if (pacman.facing == 0) { 
-		let move = -1;
-		let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
-		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.y += move; } 
+	let moved = false;
+	if (pacman.timer > 0){
+		let m = {x: 0, y: 0};
+		switch(pacman.tryFace){
+			case 0:
+			default:
+				m.y = -1;
+				break;
+			case 1:
+				m.x = -1;
+				if (pacman.x % 1 != 0) m.x = -0.5;
+				break;
+			case 2:
+				m.y = 1;
+				break;
+			case 3:
+				m.x = 1;
+				if (pacman.x % 1 != 0) m.x = 0.5;
+				break;
+		}
+		let newTile = mazes[curMaze].tiles[pacman.y+m.y][pacman.x+m.x];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { 
+			pacman.x += m.x; 
+			pacman.y += m.y; 
+			pacman.facing = pacman.tryFace;
+			moved = true;
+		} 
+	} 
+	if (!moved) {
+		let m = {x: 0, y: 0};
+		switch(pacman.facing){
+			case 0:
+			default:
+				m.y = -1;
+				break;
+			case 1:
+				m.x = -1;
+				if (pacman.x % 1 != 0) m.x = -0.5;
+				break;
+			case 2:
+				m.y = 1;
+				break;
+			case 3:
+				m.x = 1;
+				if (pacman.x % 1 != 0) m.x = 0.5;
+				break;
+		}
+		let newTile = mazes[curMaze].tiles[pacman.y+m.y][pacman.x+m.x];
+		if (newTile == 0 || newTile == 16 || newTile == undefined) { 
+			pacman.x += m.x; 
+			pacman.y += m.y; 
+		} 
 	}
-	else if (pacman.facing == 2) { 
-		let move = 1;
-		let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
-		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.y += move; } 
-	}
-	else if (pacman.facing == 1) { 
-		let move = -1;
-		if (pacman.x % 1 != 0) move = -0.5;
-		let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
-		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.x = (pacman.x + move + 28) % 28; } 
-	}
-	else if (pacman.facing == 3) { 
-		let move = 1;
-		if (pacman.x % 1 != 0) move = 0.5;
-		let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
-		if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.x = (pacman.x + move + 28) % 28; } 
-	}
+	pacman.x = (pacman.x + 28) % 28;
+
 	if (curPellets[pacman.y][pacman.x] == 3) {
 		for (let ghost of ghosts){
-			if (ghost.state != "sleep" && ghost.state != "leave") {
-				ghost.state = "frightened";
-				ghost.timer = 150;
-			}
+			if (ghost.state == "sleep" || ghost.state == "leave" || ghost.state == "enter" || ghost.state == "eaten") continue;
+			ghost.state = "frightened";
+			ghost.timer = 150;
+			
 		}
 	}
+	pacman.timer = Math.max(0, pacman.timer-1);
 	curPellets[pacman.y][pacman.x] = 0;
+	return curPellets.every( (row) => {
+		return row.every( (e) => {
+			return e == 0;
+		})
+	})
 }
 
 function startPacman(mazeNum){
@@ -367,46 +406,39 @@ function startPacman(mazeNum){
 	function Restart(mazeNum) {
 		frame = 0;
 		curMaze = Math.min(0, Math.max(mazes.length-1, mazeNum));
-		curPellets = pellets[curMaze];
+		curPellets = structuredClone(pellets[curMaze]);
+		//curPellets = pellets[curMaze];
 		ghosts = [
 			{ colour: red,    x: mazes[curMaze].ghostX,     y: mazes[curMaze].ghostY - 3, facing: 1, state: "leave", timer: 0 },
 			{ colour: pink,   x: mazes[curMaze].ghostX,     y: mazes[curMaze].ghostY,     facing: 2, state: "sleep", timer: 0 },
 			{ colour: blue,   x: mazes[curMaze].ghostX - 2, y: mazes[curMaze].ghostY,     facing: 0, state: "sleep", timer: 0 },
 			{ colour: orange, x: mazes[curMaze].ghostX + 2, y: mazes[curMaze].ghostY,     facing: 0, state: "sleep", timer: 0 },
 		];
-		pacman = { x: mazes[curMaze].pacX,    y: mazes[curMaze].pacY,    facing: 1, state: "alive" };
+		pacman = { x: mazes[curMaze].pacX, y: mazes[curMaze].pacY, facing: 1, state: "alive", tryFace: 1, timer: 0 };
 		go = false;
+		won = false;
 		window.content.onmousedown = () => { 
 			go = true; 
 			frame = 0; 
 			window.content.onmousedown = null; 
 		}
 		document.onkeydown = (event) => {
-			/*if (event.key == "Enter"){
-				for (let ghost of ghosts){
-					ghost.state = "eaten";
-				}
-			}*/
 			if (!go) return;
 			if (event.key == "w") { 
-				let move = -1;
-				let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
-				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 0;  } 
+				pacman.tryFace = 0;
+				pacman.timer = 3; 
 			}
 			else if (event.key == "s") { 
-				let move = 1;
-				let newTile = mazes[curMaze].tiles[pacman.y+move][pacman.x];
-				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 2;  } 
+				pacman.tryFace = 2;
+				pacman.timer = 3; 
 			}
 			else if (event.key == "a") { 
-				let move = -1;
-				let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
-				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 1;  } 
+				pacman.tryFace = 1;
+				pacman.timer = 3; 
 			}
 			else if (event.key == "d") { 
-				let move = 1;
-				let newTile = mazes[curMaze].tiles[pacman.y][pacman.x+move];
-				if (newTile == 0 || newTile == 16 || newTile == undefined) { pacman.facing = 3;  } 
+				pacman.tryFace = 3;
+				pacman.timer = 3; 
 			}
 		}
 		DoFrame();
@@ -418,11 +450,11 @@ function startPacman(mazeNum){
 		frame++;
 		RenderMaze(context, curMaze);
 		RenderPellets(context, frame, curPellets);
-		for (let i = 0; i < ghosts.length; i++){
+		if (!won) for (let i = 0; i < ghosts.length; i++){
 			if (go) ComputeGhost(context, frame, ghosts, i, pacman, curMaze);
 			RenderGhost(context, frame, ghosts[i]);
 		}
-		if (go) ComputePacman(pacman, curMaze, curPellets, ghosts);
+		if (go && !won) won = ComputePacman(pacman, curMaze, curPellets, ghosts);
 		RenderPacman(context, frame, pacman);
 	}
 }

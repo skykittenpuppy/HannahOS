@@ -29,22 +29,22 @@ function getShortDir(){
 const bash = "bash";
 const neofetchInfo = `
 <img src="Resources/icon.png"/>
-<div>
-	<span class="nowrap"><span class="colour04">Hannah</span>@<span class="colour04">beegirl.gay</span><br/></span>
-	<span class="nowrap">------------------<br/></span>
-	<span class="nowrap"><span class="colour11">OS</span>: EndeavourOS Linux x86_64<br/></span>
-	<span class="nowrap"><span class="colour11">Name</span>: Hannah Hadfield<br/></span>
-	<span class="nowrap"><pre><span class="colour11">LGBTQI+</span>: <img class="icon" src="Resources/GynoR.png"/>Gynoromantic, <img class="icon" src="Resources/PanS.png"/>Pansexual,   <img class="icon" src="Resources/PolyA.png"/>Polyamorous,</pre><br/></span>
-	<span class="nowrap"><pre>         <img class="icon" src="Resources/TransG.png"/>Transgender,  <img class="icon" src="Resources/PlushG.png"/>Plushgender, <img class="icon" src="Resources/BeeG.png"/>Beegender</pre><br/></span>
-	<span class="nowrap"><span class="colour11">Pronouns</span>: It/Its, They/Them, She/Her<br/></span>
-	<span class="nowrap"><span class="colour11">Hobbies</span>: C# Programming, Bad Ukulele, <br/></span>
-	<span class="nowrap"><span class="colour11">Placeholder</span>: <br/></span>
-	<span class="nowrap"><span class="colour11">Placeholder</span>: <br/></span>
-	<span class="nowrap"><span class="colour11">Idols</span>: Maia Arson Crimew, <br/></span>
-	<span class="nowrap"><br/></span>
-	<span class="nowrap"><span class="colour01">███</span><span class="colour03">███</span><span class="colour05">███</span><span class="colour07">███</span><span class="colour09">███</span><span class="colour11">███</span><span class="colour13">███</span><span class="colour15">███</span><br/></span>
-	<span class="nowrap"><span class="colour02">███</span><span class="colour04">███</span><span class="colour06">███</span><span class="colour08">███</span><span class="colour10">███</span><span class="colour12">███</span><span class="colour14">███</span><span class="colour16">███</span><br/></span>
-</div>`;
+<pre>
+ <span class="colour04">Hannah</span>@<span class="colour04">beegirl.gay</span>
+ ------------------
+ <span class="colour11">OS</span>: EndeavourOS Linux x86_64
+ <span class="colour11">Name</span>: Hannah Hadfield
+ <span class="colour11">LGBTQI+</span>: <img class="icon" src="Resources/GynoR.png"/>Gynoromantic, <img class="icon" src="Resources/PanS.png"/>Pansexual,   <img class="icon" src="Resources/PolyA.png"/>Polyamorous,
+          <img class="icon" src="Resources/TransG.png"/>Transgender,  <img class="icon" src="Resources/PlushG.png"/>Plushgender, <img class="icon" src="Resources/BeeG.png"/>Beegender
+ <span class="colour11">Pronouns</span>: It/Its, They/Them, She/Her
+ <span class="colour11">Hobbies</span>: C# Programming, Bad Ukulele, 
+ <span class="colour11">Placeholder</span>: 
+ <span class="colour11">Placeholder</span>: 
+ <span class="colour11">Idols</span>: Maia Arson Crimew, 
+
+ <span class="palette"><span class="colour01">███</span><span class="colour03">███</span><span class="colour05">███</span><span class="colour07">███</span><span class="colour09">███</span><span class="colour11">███</span><span class="colour13">███</span><span class="colour15">███</span></span>
+ <span class="palette"><span class="colour02">███</span><span class="colour04">███</span><span class="colour06">███</span><span class="colour08">███</span><span class="colour10">███</span><span class="colour12">███</span><span class="colour14">███</span><span class="colour16">███</span></span>
+</pre>`;
 function cowSay(text){
 	if (text == "") text = `...`;
 	let splitText = [""];
@@ -89,12 +89,15 @@ const commands = [
 	{command: "neofetch", function: (args) => { consoleWrite(neofetchInfo, "neofetch"); }},
 	{command: "transrights", function: (args) => { 
 		let re = args.slice(1).join(" ")+" "; 
-		if (re.trim() == "") re = "█";
-		consoleWrite(`	<span class="other colour14 nowrap">`+re.repeat(1000)+`</span></br>
-						<span class="other colour12 nowrap">`+re.repeat(1000)+`</span></br>
-						<span class="other colour16 nowrap">`+re.repeat(1000)+`</span></br>
-						<span class="other colour12 nowrap">`+re.repeat(1000)+`</span></br>
-						<span class="other colour14 nowrap">`+re.repeat(1000)+`</span></br>`, "nowrap"); 
+		let de = re.trim() == ""
+		let cl = "nowrap"
+		if (de) { re = "█"; cl += " palette"}
+		consoleWrite(`	<span class="tBlue  nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="tPink  nowrap">`+re.repeat(1000)+`</span></br>`+
+				(!de ? `<span class="       nowrap">`+re.repeat(1000)+`</span></br>` :
+					   `<span class="tWhite nowrap">`+re.repeat(1000)+`</span></br>`)
+					  +`<span class="tPink  nowrap">`+re.repeat(1000)+`</span></br>
+						<span class="tBlue  nowrap">`+re.repeat(1000)+`</span></br>`, cl); 
 	}},
 	{command: "echo", function: (args) => { consoleWrite(args.slice(1).join(" ")); }},
 	{command: "cowsay", function: (args) => { consoleWrite(cowSay(args.slice(1).join(" "))); }},
