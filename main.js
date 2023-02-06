@@ -121,6 +121,7 @@ const commands = [
 
 	{command: "window", function: (args) => { newWindow(args[1] || "", args[2] || 600, args[3] || 600) }},
 	{command: "pacman", function: (args) => { startPacman(args[1] || 0) }},
+	{command: "bezier", function: (args) => { startBezier() }},
 ];
 
 function consoleClear(){

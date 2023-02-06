@@ -75,7 +75,7 @@ body{
 	stroke-dasharray: 70 70 70;
 }
 .windowContent{
-	padding-block-start: 1.5em;
+	margin-block-start: 1.5em;
 	height: calc(100% - 1.5em);
 	width: 100%;
 }
@@ -86,8 +86,14 @@ body{
 	justify-content: center;
 }
 .pacman canvas{
-	aspect-ratio: 224/288;
+	aspect-ratio: 28/36;
 	height: 100%;
+}
+.bezier canvas{
+	aspect-ratio: 1/1;
+	padding: 0.5em;
+	height: calc(100% - 1.5em);
+	width: calc(100% - 1em);
 }
 /*Console*/
 #console{
