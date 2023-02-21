@@ -1,9 +1,10 @@
-:root{
+*{
 	--text: var(--consoleColour16);
 	--back: var(--consoleColour01);
 }
-.default{
+.Default{
 	--consoleColour01: #232627;
+	--consoleColour01a: #23262780;
 	--consoleColour02: #7f8c8d;
 	--consoleColour03: #ed1515;
 	--consoleColour04: #c0392b;
@@ -19,9 +20,11 @@
 	--consoleColour14: #16a085;
 	--consoleColour15: #fcfcfc;
 	--consoleColour16: #ffffff;
+	--consoleColour16a: #ffffff40;
 }
-.other{
+.Oaty{
 	--consoleColour01: #46465c;
+	--consoleColour01a: #46465c80;
 	--consoleColour02: #634560;
 	--consoleColour03: #e95678;
 	--consoleColour04: #ec6a88;
@@ -37,6 +40,27 @@
 	--consoleColour14: #6be6e6;
 	--consoleColour15: #fdf0ed;
 	--consoleColour16: #ffffff;
+	--consoleColour16a: #ffffff40;
+}
+.LightMode{
+	--consoleColour01: #ffffff;
+	--consoleColour01a: #ffffff80;
+	--consoleColour02: #ffffff;
+	--consoleColour03: #ffffff;
+	--consoleColour04: #ffffff;
+	--consoleColour05: #ffffff;
+	--consoleColour06: #ffffff;
+	--consoleColour07: #ffffff;
+	--consoleColour08: #ffffff;
+	--consoleColour09: #ffffff;
+	--consoleColour10: #ffffff;
+	--consoleColour11: #ffffff;
+	--consoleColour12: #ffffff;
+	--consoleColour13: #ffffff;
+	--consoleColour14: #ffffff;
+	--consoleColour15: #ffffff;
+	--consoleColour16: #000000;
+	--consoleColour16a: #00000040;
 }
 
 .tBlue{
@@ -101,3 +125,34 @@
 .colour16{
 	--text: var(--consoleColour16);
 }
+
+.theme{
+	font-size: 0.6em;
+	stroke-width: 2rem;
+	background: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	filter: brightness(1);
+}
+.theme path{
+	stroke-dasharray:	0 calc(25 * 3.1414 / 8 * var(--r))
+						calc(25 * 3.1416 / 8) 1000;
+}
+[data-rotation="1"] { --r: 0; }
+[data-rotation="2"] { --r: 1; }
+[data-rotation="3"] { --r: 2; }
+[data-rotation="4"] { --r: 3; }
+[data-rotation="5"] { --r: 4; }
+[data-rotation="6"] { --r: 5; }
+[data-rotation="7"] { --r: 6; }
+[data-rotation="8"] { --r: 7; }
+[data-rotation="9"] { --r: 8; }
+[data-rotation="10"] { --r: 9; }
+[data-rotation="11"] { --r: 10; }
+[data-rotation="12"] { --r: 11; }
+[data-rotation="13"] { --r: 12; }
+[data-rotation="14"] { --r: 13; }
+[data-rotation="15"] { --r: 14; }
+[data-rotation="16"] { --r: 15; }
