@@ -1,6 +1,7 @@
-const computer = document.getElementById("computer")
-const desktop = document.getElementById("desktop")
-const taskbar = document.getElementById("taskbar")
+const computer = document.getElementById("computer");
+const desktop = document.getElementById("desktop");
+const taskbar = document.getElementById("taskbar");
+const appList = {};
 let focusedWindow = null;
 
 class Application {
@@ -11,6 +12,7 @@ class Application {
 		this.startUp = {width:width, height:height, func:startFunc};
 		this.desktopIcon = null;
 
+		appList[this.name] = this;
 		this.addToDesktop();
 	}
 	addToDesktop(){
@@ -21,25 +23,25 @@ class Application {
 		desktop.appendChild(this.desktopIcon);
 	}
 	openApp(){
-		let win = new Window(this.name, this.icon, this.startUp)
+		let win = new Window(this.name, this.icon, this.startUp, arguments)
 		win.addToTaskbar();
 		win.focusApp()
 	}
 }
 class Window {
-	constructor(appName, iconPath, startUp){
+	constructor(appName, iconPath, startUp, args){
 		this.name = appName;
 		this.icon = iconPath;
 		this.window = null;
 		this.taskbarIcon = null;
 
-		this.createWindow(startUp);
+		this.createWindow(startUp, args);
 	}
-	createWindow(startUp){
+	createWindow(startUp, args){
 		this.window = document.createElement("div");
 		this.window.classList = "window "+this.name;
-		this.window.style.width = startUp.width+"px";
-		this.window.style.height = startUp.height+"px";
+		this.window.style.width = startUp.width;
+		this.window.style.height = startUp.height;
 		this.window.style.left = document.documentElement.clientWidth/2 - startUp.width/2+"px";
 		this.window.style.top = document.documentElement.clientHeight/2 - taskbar.offsetHeight - startUp.height/2+"px";
 		
@@ -109,7 +111,7 @@ class Window {
 		}
 		this.window.appendChild(this.windowHeader);
 
-		startUp.func.call(this);
+		startUp.func.call(this, args);
 	}
 	close(){
 		this.window.onmousedown = null;

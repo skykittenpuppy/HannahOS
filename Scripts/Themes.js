@@ -1,4 +1,4 @@
-const themes = ["Default", "Oaty", "LightMode", "Default", "Default", "Default", "Default", "Default"];
+const themes = ["Default", "Oaty", "LightMode"];
 
 setTheme(localStorage.getItem("colTheme") || "Default");
 

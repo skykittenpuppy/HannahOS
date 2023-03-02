@@ -1,4 +1,5 @@
 * {
+	scroll-behavior: smooth;
 	-webkit-user-select: none; /* Safari */
 	-ms-user-select: none; /* IE 10 and IE 11 */
 	user-select: none; /* Standard syntax */
@@ -16,6 +17,9 @@ ul{
 }
 li::marker{
 	color: transparent;
+}
+.nowrap{
+	white-space: nowrap;
 }
 
 /*Wallpaper Stuff*/
@@ -117,6 +121,9 @@ li::marker{
 .window{
 	resize: both;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: absolute;
 	z-index: 4;
 	min-height: 8em;
@@ -177,12 +184,21 @@ li::marker{
 	stroke-dasharray: 70 70 70;
 }
 .windowContent{
-	overflow: auto;
+	overflow: hidden;
 	margin-block-start: 1.5em;
 	height: calc(100% - 1.5em);
 	width: 100%;
 }
-.Themer{min-height: 8.5em; min-width: fit-content;}
+.windowContent canvas{
+	max-width: 100%;
+	max-height: 100%;
+	aspect-ratio: 1/1;
+}
+/*Pacman*/
+.Pacman .windowContent canvas{
+	aspect-ratio: 28/36;
+}
+/*Themer*/
 .Themer .windowContent{
 	padding: 0.25em;
 	display: grid;
@@ -201,22 +217,67 @@ li::marker{
 	border: 0.15em solid var(--consoleColour02);
 	margin: 0.05em;
 }
-
-
-/*
-.pacman{
-	background-color: black;
+.Themer .windowContent button.emptyTheme{
+	min-height: 2em;
+	color: transparent;
+	background: transparent;
+	border: 0;
+	margin: 0;
+}
+/*Console*/
+.Console .windowContent{
+	height: calc(100% - 2em);
+	margin-inline-start: 0.5em;
+	margin-block-start: 2em;
+	overflow-y:auto;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-direction: column;
+	font-family: monospace;
 }
-.pacman canvas{
-	aspect-ratio: 28/36;
-	height: 100%;
+.Console .windowContent span{
+	word-break: break-all;
 }
-.bezier canvas{
-	aspect-ratio: 1/1;
-	padding: 0.5em;
-	height: calc(100% - 1.5em);
-	width: calc(100% - 1em);
+.Console .windowContent span:has(input){
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.5ch;
+}
+.Console .windowContent input{
+	font-family: inherit;
+	background: inherit;
+	font-size: inherit;
+	padding: inherit;
+	border: inherit;
+	color: inherit;
+	outline: 0;
+	width: 100%;
+}
+.Console .windowContent pre{
+	display: inline;
+	font-family: inherit;
+	margin: inherit;
+	width: fit-content;
+}
+.Console .windowContent .neofetch{
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto;
+}
+/*@media (max-width: 700px) {
+	.Console .windowContent .neofetch{
+		grid-template-columns: min-content;
+		grid-template-rows: auto 1fr;
+	}
 }*/
+.Console .windowContent .neofetch img{
+	height: 100%;
+	width: 100%;
+}
+.Console .windowContent .neofetch .icon{
+	position: relative;
+	padding: 0;
+	padding-inline-end: 0.5ch;
+	top: 2px;
+	width: 1em;
+	height: 1em;
+}
