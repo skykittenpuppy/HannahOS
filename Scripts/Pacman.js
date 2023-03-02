@@ -14,7 +14,7 @@ function(args) {
 	let ghosts;
 	let pacman;
 	let go;
-	Restart(args[0]);
+	Restart(args[0] || 0);
 
     let id = setInterval(DoFrame, 100);
 	window.onClose = () => {
