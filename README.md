@@ -1,2 +1,1 @@
-Website for me to learn HTML, CSS, JS, and to generally mess around!
-Also acts as a very simple page for myself.
+Ex-Main page, now a fun experiment for me!
